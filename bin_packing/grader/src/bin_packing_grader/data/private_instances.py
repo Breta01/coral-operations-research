@@ -2,10 +2,18 @@
 
 from __future__ import annotations
 
+import importlib.resources
+import json
 import random
 
 
 def make_private_instances() -> list[dict]:
+    data_file = importlib.resources.files("bin_packing_grader.data").joinpath(
+        "private_instances.json"
+    )
+    if data_file.is_file():
+        return json.loads(data_file.read_text())
+
     rng = random.Random(42)
     cases: list[dict] = []
     specs = [
