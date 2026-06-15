@@ -1,0 +1,62 @@
+task:
+  name: "bin_packing"
+  description: |
+    Optimize a 3D bin-packing solver over the benchmark instances supplied by
+    the grader. There are 5 public instances in data/public_instances.json and
+    20 private instances that are also included in the final evaluation. Edit
+    solution.py. It must define:
+
+        run(instances) -> dict[str, list[placement]]
+
+    The grader calls run(instances), where each instance is a dictionary:
+
+        {
+          "id": "problem_1",
+          "bins": [{"id": 0, "length": L, "width": W, "height": H}, ...],
+          "items": [
+            {"id": item_id, "quantity": q, "length": l, "width": w, "height": h},
+            ...
+          ],
+        }
+
+    Return a dictionary mapping each instance id to a list of placements. A
+    placement can be either a dict:
+
+        {"bin": 0, "item_id": 3, "x": 0, "y": 0, "z": 0, "l": 9, "w": 12, "h": 4}
+
+    or an 8-tuple/list:
+
+        (bin_index, item_id, x, y, z, l, w, h)
+
+    Coordinates are the lower-left-back corner of an axis-aligned box. Rotations
+    are allowed, so (l, w, h) may be any permutation of the item dimensions.
+    The grader verifies that every placed box is inside its bin, uses no more
+    than the available quantity of each item type, and does not overlap another
+    accepted placement in the same bin.
+
+    Score is maximized over all 25 instances. Each instance score is
+    0.9 * packed-volume ratio + 0.1 * packed-item-count ratio. Packed-volume
+    ratio is normalized by min(total item volume, total bin volume). Invalid
+    placements are ignored and reported in grader feedback. Crashes or malformed
+    top-level output fail the evaluation. Public instance details are reported
+    in feedback; private instances are reported only as an aggregate.
+
+    highspy is available in the seed environment and is a good choice for
+    modeling assignment/selection decisions as an LP/MIP. You may combine it
+    with constructive, repair, local-search, or exact geometric subroutines.
+
+grader:
+  entrypoint: "bin_packing_grader.grader:Grader"
+  setup:
+    - "uv pip install -e ./grader"
+  timeout: 300
+  direction: maximize
+  args:
+    program_file: "solution.py"
+
+agents:
+  count: 2
+  runtime: cursor
+
+workspace:
+  repo_path: "./seed"
