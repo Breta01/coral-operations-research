@@ -58,6 +58,7 @@ agents:
   count: 2
   runtime: cursor
 
+knowledge: false
 sharing:
   notes: false
   skills: false
