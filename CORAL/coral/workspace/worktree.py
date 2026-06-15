@@ -151,6 +151,8 @@ def setup_shared_state(
     coral_dir: Path,
     shared_dir_name: str = ".claude",
     island_id: str | int | None = None,
+    *,
+    knowledge: bool = True,
 ) -> None:
     """Create a shared state directory in the worktree with symlinks into the island root.
 
@@ -181,6 +183,11 @@ def setup_shared_state(
     shared_dir.mkdir(exist_ok=True)
 
     for item in _SHARED_STATE_ITEMS:
+        if not knowledge and item in {"notes", "skills"}:
+            dst = shared_dir / item
+            if dst.is_symlink():
+                dst.unlink()
+            continue
         src = state_root / item
         dst = shared_dir / item
         # If a previous (buggy) run wrote into a real local dir at this path
@@ -230,6 +237,8 @@ def repoint_shared_state(
     coral_dir: Path,
     shared_dir_name: str,
     new_island_id: str | int,
+    *,
+    knowledge: bool = True,
 ) -> None:
     """Repoint an agent's shared-state symlinks at a different island.
 
@@ -259,6 +268,11 @@ def repoint_shared_state(
     shared_dir.mkdir(exist_ok=True)
 
     for item in _SHARED_STATE_ITEMS:
+        if not knowledge and item in {"notes", "skills"}:
+            dst = shared_dir / item
+            if dst.is_symlink():
+                dst.unlink()
+            continue
         src = state_root / item
         dst = shared_dir / item
         # Ensure the new island has the directory the symlink will point at
@@ -580,6 +594,7 @@ def setup_cursor_settings(
     coral_dir: Path,
     *,
     research: bool = True,
+    knowledge: bool = True,
     # Cursor Agent uses its own auth (`cursor-agent login`) and does not
     # honour the OpenAI/Anthropic base-url env vars LiteLLM relies on.
     # The kwargs are accepted so the manager dispatch can stay uniform.
@@ -608,8 +623,15 @@ def setup_cursor_settings(
         '- Use `coral eval -m "<short description>"` to stage, commit, and grade your work — never bare `git commit`.',
         "- Read the full task brief in `AGENTS.md` at the workspace root.",
         f"- Do not read or modify anything under `{private_dir}/` (grader internals, answer keys).",
-        "- Share findings through `.cursor/notes/` and reusable tools through `.cursor/skills/` so other agents benefit.",
     ]
+    if knowledge:
+        body_lines.append(
+            "- Share findings through `.cursor/notes/` and reusable tools through `.cursor/skills/` so other agents benefit."
+        )
+    else:
+        body_lines.append(
+            "- Persistent shared memory is disabled for this run; use eval feedback, `coral log`, and `coral show` only."
+        )
     if not research:
         body_lines.append("- Web search and web fetch are disabled for this run.")
 

@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
-from coral.config import CoralConfig
+from coral.config import CoralConfig, knowledge_enabled
 from coral.hub._island import island_root
 from coral.hub.checkpoint import init_checkpoint_repo
 from coral.workspace.repo import (
@@ -75,6 +75,8 @@ def _build_island_subtree(
     island_root: Path,
     effective_config_dir: Path,
     user_skill_paths: list[str],
+    *,
+    knowledge: bool = True,
 ) -> None:
     """Create the per-island state directory tree and seed bundled assets.
 
@@ -85,28 +87,29 @@ def _build_island_subtree(
     for sub in _PER_ISLAND_SUBDIRS:
         (island_root / sub).mkdir(parents=True, exist_ok=True)
 
-    # Seed bundled skills from coral/template/skills/
-    if _SEED_SKILLS_DIR.is_dir():
-        for skill_dir in _SEED_SKILLS_DIR.iterdir():
-            if skill_dir.is_dir():
-                dst = island_root / "skills" / skill_dir.name
-                if not dst.exists():
-                    shutil.copytree(skill_dir, dst)
-                    logger.info(f"Seeded skill: {skill_dir.name}")
+    if knowledge:
+        # Seed bundled skills from coral/template/skills/
+        if _SEED_SKILLS_DIR.is_dir():
+            for skill_dir in _SEED_SKILLS_DIR.iterdir():
+                if skill_dir.is_dir():
+                    dst = island_root / "skills" / skill_dir.name
+                    if not dst.exists():
+                        shutil.copytree(skill_dir, dst)
+                        logger.info(f"Seeded skill: {skill_dir.name}")
 
-    # Seed user-provided skills from agents.skills config
-    for skill_path in user_skill_paths:
-        src = Path(skill_path)
-        if not src.is_absolute():
-            src = (effective_config_dir / src).resolve()
-        if src.is_dir():
-            dst = island_root / "skills" / src.name
-            if dst.exists():
-                shutil.rmtree(dst)
-            shutil.copytree(src, dst)
-            logger.info(f"Seeded user skill: {src.name}")
-        else:
-            logger.warning(f"Skill directory not found: {src}")
+        # Seed user-provided skills from agents.skills config
+        for skill_path in user_skill_paths:
+            src = Path(skill_path)
+            if not src.is_absolute():
+                src = (effective_config_dir / src).resolve()
+            if src.is_dir():
+                dst = island_root / "skills" / src.name
+                if dst.exists():
+                    shutil.rmtree(dst)
+                shutil.copytree(src, dst)
+                logger.info(f"Seeded user skill: {src.name}")
+            else:
+                logger.warning(f"Skill directory not found: {src}")
 
     # Seed bundled subagent templates from coral/template/agents/
     if _SEED_AGENTS_DIR.is_dir():
@@ -234,6 +237,7 @@ def create_project(config: CoralConfig, config_dir: Path | None = None) -> Proje
 
     # Resolve task directory for relative path resolution
     effective_config_dir = config.task_dir or config_dir or Path.cwd()
+    expose_knowledge = knowledge_enabled(config)
 
     # Create shared state directories.
     # Single-island (count == 1): keep today's exact layout under public/.
@@ -249,6 +253,7 @@ def create_project(config: CoralConfig, config_dir: Path | None = None) -> Proje
             coral_dir / "public",
             effective_config_dir,
             list(config.agents.skills),
+            knowledge=expose_knowledge,
         )
     else:
         (coral_dir / "islands").mkdir(parents=True, exist_ok=True)
@@ -260,6 +265,7 @@ def create_project(config: CoralConfig, config_dir: Path | None = None) -> Proje
                 island_root,
                 effective_config_dir,
                 list(config.agents.skills),
+                knowledge=expose_knowledge,
             )
 
     # Save config

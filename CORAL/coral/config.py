@@ -320,6 +320,7 @@ class CoralConfig:
     grader: GraderConfig = field(default_factory=GraderConfig)
     agents: AgentConfig = field(default_factory=AgentConfig)
     islands: IslandsConfig = field(default_factory=IslandsConfig)
+    knowledge: bool = True
     sharing: SharingConfig = field(default_factory=SharingConfig)
     workspace: WorkspaceConfig = field(default_factory=WorkspaceConfig)
     run: RunConfig = field(default_factory=RunConfig)
@@ -409,6 +410,7 @@ def _preprocess(data: dict[str, Any]) -> dict[str, Any]:
                 "is_global": h.get("global", False),
                 "trigger": h.get("trigger", "interval"),
                 "prompt": h.get("prompt", ""),
+                "options": h.get("options", {}),
             }
             for h in heartbeat_raw
         ]
@@ -464,7 +466,20 @@ def _preprocess(data: dict[str, Any]) -> dict[str, Any]:
 
     data["agents"] = agents_data
 
+    if data.get("knowledge") is False:
+        sharing_data = data.get("sharing") or {}
+        if isinstance(sharing_data, dict):
+            sharing_data = dict(sharing_data)
+            sharing_data["notes"] = False
+            sharing_data["skills"] = False
+            data["sharing"] = sharing_data
+
     # Remove task_dir if present in raw data (it's internal-only)
     data.pop("task_dir", None)
 
     return data
+
+
+def knowledge_enabled(config: CoralConfig) -> bool:
+    """Return whether persistent shared knowledge should be exposed to agents."""
+    return bool(config.knowledge and config.sharing.notes and config.sharing.skills)

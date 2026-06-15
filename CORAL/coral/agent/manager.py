@@ -44,7 +44,7 @@ from coral.agent.state import (
     write_agent_state,
 )
 from coral.agent.warmstart import WarmStartRunner
-from coral.config import CoralConfig
+from coral.config import CoralConfig, knowledge_enabled
 from coral.hub._island import island_root
 from coral.hub.attempts import (
     agent_in_grader_queue,
@@ -83,6 +83,22 @@ from coral.workspace import (
 )
 
 logger = logging.getLogger(__name__)
+
+_KNOWLEDGE_HEARTBEATS = {"consolidate", "lint_wiki"}
+_NO_KNOWLEDGE_HEARTBEAT_PROMPTS = {
+    "reflect": (
+        "Pause and reflect on the recent eval feedback and code changes. "
+        "Choose one concrete next direction, then continue. Persistent shared "
+        "memory is disabled for this run, so do not create or consult shared "
+        "memory artifacts."
+    ),
+    "pivot": (
+        "Progress appears stalled. Pick a meaningfully different direction "
+        "using only eval feedback, `coral log`, `coral show`, and the codebase. "
+        "Persistent shared memory is disabled for this run, so do not create "
+        "or consult shared memory artifacts."
+    ),
+}
 
 
 class AgentManager:
@@ -479,11 +495,13 @@ class AgentManager:
 
         # Set up shared state directory (notes, skills, attempts symlinks)
         shared_dir_name = runtime.shared_dir_name
+        expose_knowledge = knowledge_enabled(self.config)
         setup_shared_state(
             worktree_path,
             self.paths.coral_dir,
             shared_dir_name,
             island_id=island_id,
+            knowledge=expose_knowledge,
         )
 
         # Register agent with gateway if active (before settings so we have the key)
@@ -538,6 +556,7 @@ class AgentManager:
                 worktree_path,
                 coral_dir=self.paths.coral_dir,
                 research=self.config.agents.research,
+                knowledge=expose_knowledge,
                 gateway_url=gateway_url,
                 gateway_api_key=gateway_api_key,
                 island_id=island_id,
@@ -724,16 +743,27 @@ class AgentManager:
         if not agent_dirs:
             raise RuntimeError(f"No agent worktrees found in {paths.agents_dir}")
 
-        fresh_start_prompt = (
-            "Begin. This is a resumed run — previous work already exists. "
-            "Before writing any code, review the current state:\n"
-            "1. Run `coral log` to see the leaderboard\n"
-            "2. Run `coral log --recent` to see recent activity\n"
-            "3. Read notes in your shared directory (e.g. `.claude/notes/`)\n"
-            "4. Check skills in your shared directory (e.g. `.claude/skills/`)\n"
-            "5. Inspect top attempts with `coral show <hash>` to understand what's been tried\n\n"
-            "Build on what worked. Don't duplicate prior efforts."
-        )
+        if knowledge_enabled(self.config):
+            fresh_start_prompt = (
+                "Begin. This is a resumed run — previous work already exists. "
+                "Before writing any code, review the current state:\n"
+                "1. Run `coral log` to see the leaderboard\n"
+                "2. Run `coral log --recent` to see recent activity\n"
+                "3. Read notes in your shared directory (e.g. `.claude/notes/`)\n"
+                "4. Check skills in your shared directory (e.g. `.claude/skills/`)\n"
+                "5. Inspect top attempts with `coral show <hash>` to understand what's been tried\n\n"
+                "Build on what worked. Don't duplicate prior efforts."
+            )
+        else:
+            fresh_start_prompt = (
+                "Begin. This is a resumed run — previous work already exists. "
+                "Before writing any code, review the current state:\n"
+                "1. Run `coral log` to see the leaderboard\n"
+                "2. Run `coral log --recent` to see recent activity\n"
+                "3. Inspect top attempts with `coral show <hash>` to understand what's been tried\n\n"
+                "Persistent shared memory is disabled for this run. Build on eval feedback "
+                "and attempts only."
+            )
 
         if instruction:
             fresh_start_prompt += f"\n\n## Additional Instructions\n{instruction}"
@@ -1028,13 +1058,12 @@ class AgentManager:
         global_actions = read_global_heartbeat(self.paths.coral_dir, island_id=island_id)
 
         heartbeat_actions = []
+        expose_knowledge = knowledge_enabled(self.config)
         for ad in local_actions:
-            prompt_template = ad.get("prompt") or DEFAULT_PROMPTS.get(ad["name"], "")
-            prompt = (
-                prompt_template.format(shared_dir=shared_dir, agent_id=agent_id)
-                if prompt_template
-                else ""
-            )
+            if not expose_knowledge and ad["name"] in _KNOWLEDGE_HEARTBEATS:
+                continue
+            prompt_template = self._heartbeat_prompt_template(ad, expose_knowledge)
+            prompt = prompt_template.format(shared_dir=shared_dir, agent_id=agent_id)
             trigger = ad.get("trigger") or DEFAULT_TRIGGER.get(ad["name"], "interval")
             heartbeat_actions.append(
                 HeartbeatAction(
@@ -1047,12 +1076,10 @@ class AgentManager:
                 )
             )
         for ad in global_actions:
-            prompt_template = ad.get("prompt") or DEFAULT_PROMPTS.get(ad["name"], "")
-            prompt = (
-                prompt_template.format(shared_dir=shared_dir, agent_id=agent_id)
-                if prompt_template
-                else ""
-            )
+            if not expose_knowledge and ad["name"] in _KNOWLEDGE_HEARTBEATS:
+                continue
+            prompt_template = self._heartbeat_prompt_template(ad, expose_knowledge)
+            prompt = prompt_template.format(shared_dir=shared_dir, agent_id=agent_id)
             trigger = ad.get("trigger") or DEFAULT_TRIGGER.get(ad["name"], "interval")
             heartbeat_actions.append(
                 HeartbeatAction(
@@ -1065,6 +1092,13 @@ class AgentManager:
                 )
             )
         return HeartbeatRunner(heartbeat_actions)
+
+    @staticmethod
+    def _heartbeat_prompt_template(action: dict[str, Any], expose_knowledge: bool) -> str:
+        name = action["name"]
+        if not expose_knowledge and name in _NO_KNOWLEDGE_HEARTBEAT_PROMPTS:
+            return _NO_KNOWLEDGE_HEARTBEAT_PROMPTS[name]
+        return action.get("prompt") or DEFAULT_PROMPTS.get(name, "")
 
     def _is_paused(self, agent_id: str) -> bool:
         """Return True if the agent is currently in PAUSED state.
@@ -1305,6 +1339,7 @@ class AgentManager:
         ]
         if feedback:
             lines.append(f"Feedback: {feedback}")
+        expose_knowledge = knowledge_enabled(self.config)
         lines.extend(
             [
                 "",
@@ -1315,28 +1350,39 @@ class AgentManager:
                 "",
                 "- **Gather new information.** Read parts of the codebase, docs, or "
                 "data you haven't touched. Profile or instrument what you've been "
-                "guessing at. Search the web for related work. Check what other "
-                "agents have tried via `coral log -n 10`, `coral notes`, and "
-                "`coral skills`.",
+                "guessing at. Search the web for related work. Check recent "
+                "attempts via `coral log -n 10` and inspect promising commits "
+                "with `coral show <hash>`.",
                 "- **Run trial experiments.** Probe assumptions you've been treating "
                 "as facts. Ablate components you've been treating as load-bearing. "
                 "Where the grader supports it, sweep variants cheaply with "
                 "`coral eval --tune` before committing a real eval.",
+            ]
+        )
+        if expose_knowledge:
+            lines.append(
                 "- **Organize existing knowledge.** Consolidate scattered notes, "
                 "distill reusable skills, write down what you've ruled out and *why* "
                 "so the next iteration starts informed instead of repeating dead "
-                "ends.",
-            ]
-        )
-        if self.config.agents.count > 1:
-            lines.append(
-                "- **Find a complementary role on the team.** Reflect on what you've "
-                "contributed so far and on what your teammates are working on "
-                "(`coral log -n 10 --recent`, `coral notes --recent`). Pick a niche "
-                "that complements rather than duplicates them — investigate a "
-                "sub-problem nobody is owning, build a shared tool they're missing, "
-                "or pursue a direction they haven't explored."
+                "ends."
             )
+        if self.config.agents.count > 1:
+            if expose_knowledge:
+                lines.append(
+                    "- **Find a complementary role on the team.** Reflect on what you've "
+                    "contributed so far and on what your teammates are working on "
+                    "(`coral log -n 10 --recent`, `coral notes --recent`). Pick a niche "
+                    "that complements rather than duplicates them — investigate a "
+                    "sub-problem nobody is owning, build a shared tool they're missing, "
+                    "or pursue a direction they haven't explored."
+                )
+            else:
+                lines.append(
+                    "- **Find a complementary role on the team.** Reflect on what you've "
+                    "contributed so far and on recent teammate attempts "
+                    "(`coral log -n 10 --recent`). Pick a niche that complements rather "
+                    "than duplicates them."
+                )
         lines.extend(
             [
                 "",
@@ -1743,7 +1789,14 @@ class AgentManager:
         _move_agent_files(coral_dir, agent_id, src=src, dst=dst)
 
         # (4) Repoint worktree symlinks at dst.
-        repoint_shared_state(worktree_path, coral_dir, shared_dir_name, new_island_id=dst)
+        expose_knowledge = knowledge_enabled(self.config)
+        repoint_shared_state(
+            worktree_path,
+            coral_dir,
+            shared_dir_name,
+            new_island_id=dst,
+            knowledge=expose_knowledge,
+        )
 
         # (5) Re-write runtime permission settings against dst's island root.
         gateway_url = self._gateway.url if self._gateway else None
@@ -1753,6 +1806,7 @@ class AgentManager:
             coral_dir=coral_dir,
             shared_dir_name=shared_dir_name,
             research=self.config.agents.research,
+            knowledge=expose_knowledge,
             gateway_url=gateway_url,
             gateway_api_key=gateway_api_key,
             island_id=dst,
@@ -1763,7 +1817,7 @@ class AgentManager:
         self._agent_island[agent_id] = dst
 
         # (7) Drop an arrival note on dst (best-effort).
-        if self.migration_config.notify_island:
+        if expose_knowledge and self.migration_config.notify_island:
             try:
                 _write_arrival_note(coral_dir, candidate)
             except OSError as e:
@@ -1772,7 +1826,11 @@ class AgentManager:
         # Restart counter bump — this *is* a managed restart, surface it
         # alongside the normal restart counters in `coral status`.
         self._restart_counts[agent_id] = self._restart_counts.get(agent_id, 0) + 1
-        prompt = _build_migration_prompt(candidate, shared_dir=shared_dir_name)
+        prompt = _build_migration_prompt(
+            candidate,
+            shared_dir=shared_dir_name,
+            knowledge=expose_knowledge,
+        )
 
         logger.info(f"Migrated {agent_id}: island {src} → {dst} (score={candidate.score:.6f})")
         if self.verbose:
@@ -2413,6 +2471,7 @@ def _refresh_runtime_settings(
     coral_dir: Path,
     shared_dir_name: str,
     research: bool,
+    knowledge: bool,
     gateway_url: str | None,
     gateway_api_key: str | None,
     island_id: str,
@@ -2457,6 +2516,7 @@ def _refresh_runtime_settings(
             worktree_path,
             coral_dir=coral_dir,
             research=research,
+            knowledge=knowledge,
             gateway_url=gateway_url,
             gateway_api_key=gateway_api_key,
             island_id=island_id,
@@ -2493,8 +2553,33 @@ def _write_arrival_note(coral_dir: Path, candidate: MigrationCandidate) -> None:
     (notes_dir / fname).write_text(body)
 
 
-def _build_migration_prompt(candidate: MigrationCandidate, *, shared_dir: str) -> str:
+def _build_migration_prompt(
+    candidate: MigrationCandidate,
+    *,
+    shared_dir: str,
+    knowledge: bool = True,
+) -> str:
     """Resume prompt the migrated agent reads on its first wake-up."""
+    if not knowledge:
+        return (
+            f"## You have migrated to a new island\n\n"
+            f"You were doing well on island `{candidate.src_island}` "
+            f"(recent best `{candidate.score:.6f}`). The team selected you "
+            f"to seed island `{candidate.dst_island}`. Your worktree is now "
+            f"wired to that island's shared state.\n\n"
+            f"What changed:\n"
+            f"- `{shared_dir}/attempts`, `{shared_dir}/heartbeat`, "
+            f"`{shared_dir}/roles`, and `{shared_dir}/eval_logs` now resolve to island "
+            f"`{candidate.dst_island}`.\n"
+            f"- Your evolved role, heartbeat cadence, attempts, and eval logs "
+            f"followed you here.\n"
+            f"- Persistent shared memory is disabled for this run.\n\n"
+            f"What to do first:\n"
+            f"1. `coral log -n 10` to see this island's current leaderboard.\n"
+            f"2. Inspect promising attempts with `coral show <hash>`.\n\n"
+            f"Then bring your strongest ideas from your previous run and "
+            f"adapt them to this island's frontier."
+        )
     return (
         f"## You have migrated to a new island\n\n"
         f"You were doing well on island `{candidate.src_island}` "

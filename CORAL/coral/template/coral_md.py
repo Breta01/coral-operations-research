@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from coral.config import CoralConfig
+from coral.config import CoralConfig, knowledge_enabled
 
 _TEMPLATE_PATH = Path(__file__).parent / "coral.md.template"
 _SINGLE_TEMPLATE_PATH = Path(__file__).parent / "coral_single.md.template"
@@ -38,7 +38,8 @@ def generate_coral_md(
     score_direction = _get_score_direction(config)
 
     # Research step is conditional
-    research_enabled = config.agents.research
+    expose_knowledge = knowledge_enabled(config)
+    research_enabled = config.agents.research and expose_knowledge
     if research_enabled:
         workflow_summary = "research → plan → edit → eval → repeat"
         research_section = (
@@ -103,16 +104,28 @@ def generate_coral_md(
         repeat_research_hint=repeat_research_hint,
     )
 
+    if not expose_knowledge:
+        rendered = _without_persistent_knowledge(rendered, shared_dir)
+
     # Multi-island provenance hint: append once at the end so the existing
     # template stays untouched. Only when there's actually more than one island.
     if island_id is not None and config.islands.count > 1:
-        rendered += (
-            "\n\n## Multi-island provenance\n\n"
-            f"You are working on island `{island_id}` in a multi-island run "
-            f"({config.islands.count} islands total). Other islands exist with "
-            "their own attempts, notes, and skills, but you cannot see their "
-            "state directly. Each island evolves independently.\n"
-        )
+        if expose_knowledge:
+            rendered += (
+                "\n\n## Multi-island provenance\n\n"
+                f"You are working on island `{island_id}` in a multi-island run "
+                f"({config.islands.count} islands total). Other islands exist with "
+                "their own attempts, notes, and skills, but you cannot see their "
+                "state directly. Each island evolves independently.\n"
+            )
+        else:
+            rendered += (
+                "\n\n## Multi-island provenance\n\n"
+                f"You are working on island `{island_id}` in a multi-island run "
+                f"({config.islands.count} islands total). Other islands exist with "
+                "their own attempts and eval logs, but you cannot see their "
+                "state directly. Each island evolves independently.\n"
+            )
 
     return rendered
 
@@ -122,3 +135,55 @@ def _get_score_direction(config: CoralConfig) -> str:
     if config.grader.direction == "minimize":
         return "lower is better"
     return "higher is better"
+
+
+def _without_persistent_knowledge(rendered: str, shared_dir: str) -> str:
+    """Remove shared-memory instructions from the generated agent brief."""
+    rendered = _remove_section(rendered, "## 5. Share Knowledge")
+    rendered = _remove_section(rendered, "## 5. Record Knowledge")
+
+    markers = (
+        "note",
+        "skill",
+        "deep-research",
+        "organize-files",
+        "librarian",
+        "deep-researcher",
+        "focus",
+        "knowledge base",
+        "self-knowledge",
+        "update your knowledge",
+        "knowledge you accumulate",
+        "existing knowledge",
+        "shared knowledge",
+        f"{shared_dir}/notes",
+        f"{shared_dir}/skills",
+        "coral notes",
+        "coral skills",
+    )
+    kept_lines = []
+    for line in rendered.splitlines():
+        lowered = line.lower()
+        if any(marker in lowered for marker in markers):
+            continue
+        kept_lines.append(line)
+
+    stripped = "\n".join(kept_lines).rstrip()
+    return (
+        stripped
+        + "\n\n## Persistent Memory Disabled\n\n"
+        "This run disables persistent shared memory. Use `coral log`, "
+        "`coral show`, eval feedback, and direct code/data inspection only. "
+        "Do not create or consult shared memory artifacts.\n"
+    )
+
+
+def _remove_section(rendered: str, heading: str) -> str:
+    """Remove a markdown section beginning at heading until the next level-2 heading."""
+    start = rendered.find(heading)
+    if start == -1:
+        return rendered
+    next_heading = rendered.find("\n## ", start + len(heading))
+    if next_heading == -1:
+        return rendered[:start].rstrip()
+    return rendered[:start].rstrip() + "\n" + rendered[next_heading:].lstrip()
