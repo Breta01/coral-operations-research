@@ -1,0 +1,323 @@
+"""Read/list/search notes from .coral/public/notes/ directory.
+
+Notes are individual Markdown files with optional YAML frontmatter:
+
+    ---
+    creator: agent-1
+    created: 2026-03-14T17:35:00-00:00
+    ---
+    # Title of the note
+    Body text with findings, numbers, conclusions...
+
+Legacy format (single notes.md with ## headings) is also supported.
+"""
+
+from __future__ import annotations
+
+import os
+import re
+from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any
+
+from coral.hub._island import island_root
+
+
+def _notes_dir(coral_dir: str | Path, island_id: str | int | None = None) -> Path:
+    """Return the path to the notes directory, ensuring it exists."""
+    p = island_root(coral_dir, island_id) / "notes"
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+def _is_user_note(p: Path) -> bool:
+    """Whether a markdown file under notes/ should be treated as a user-authored note.
+
+    Excludes the legacy single-file ``notes.md`` and any file whose name starts
+    with ``_`` (convention for system-managed files like `_synthesis/`,
+    `_connections.md`, `_open-questions.md`).
+    """
+    return p.name != "notes.md" and not p.name.startswith("_")
+
+
+def _parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
+    """Parse YAML frontmatter from markdown. Returns (metadata, body)."""
+    if text.startswith("---"):
+        end = text.find("---", 3)
+        if end != -1:
+            front = text[3:end].strip()
+            body = text[end + 3 :].strip()
+            meta: dict[str, str] = {}
+            for line in front.splitlines():
+                if ":" in line:
+                    key, _, val = line.partition(":")
+                    meta[key.strip()] = val.strip()
+            return meta, body
+    return {}, text
+
+
+def _parse_legacy_entries(text: str) -> list[dict[str, Any]]:
+    """Parse legacy notes.md (## [date] title format) into entries."""
+    pattern = re.compile(r"^## ", re.MULTILINE)
+    parts = pattern.split(text)
+    entries = []
+    for part in parts:
+        part = part.strip()
+        if not part:
+            continue
+        m = re.match(r"\[([^\]]*)\]\s*(.*)", part, re.DOTALL)
+        if m:
+            date = m.group(1).strip()
+            rest = m.group(2)
+            title_line, _, body = rest.partition("\n")
+            title = title_line.strip()
+            body = body.strip()
+        else:
+            title_line, _, body = part.partition("\n")
+            date = ""
+            title = title_line.strip()
+            body = body.strip()
+
+        entries.append(
+            {
+                "date": date,
+                "title": title,
+                "body": body,
+                "creator": "",
+                "filename": "notes.md",
+            }
+        )
+    return entries
+
+
+def _parse_note_file(path: Path) -> dict[str, Any]:
+    """Parse a single note .md file into an entry dict."""
+    text = path.read_text()
+    meta, body = _parse_frontmatter(text)
+
+    # Extract title from first # heading
+    title = path.stem.replace("-", " ").replace("_", " ").title()
+    for line in body.splitlines():
+        line = line.strip()
+        if line.startswith("# "):
+            title = line[2:].strip()
+            break
+
+    return {
+        "date": meta.get("created", ""),
+        "title": title,
+        "body": body,
+        "creator": meta.get("creator", ""),
+        "filename": path.name,
+        "_mtime": os.path.getmtime(path),
+        "_path": path,  # full path, used to compute relative path later
+    }
+
+
+def _collect_from_dir(directory: Path) -> list[dict[str, Any]]:
+    """Collect note entries from a directory, including subdirectories."""
+    if not directory.is_dir():
+        return []
+
+    md_files = sorted(f for f in directory.rglob("*.md") if _is_user_note(f))
+
+    if md_files:
+        entries = [_parse_note_file(f) for f in md_files]
+        legacy = directory / "notes.md"
+        if legacy.exists() and legacy.stat().st_size > 0:
+            entries.extend(_parse_legacy_entries(legacy.read_text()))
+        return entries
+
+    legacy = directory / "notes.md"
+    if legacy.exists() and legacy.stat().st_size > 0:
+        return _parse_legacy_entries(legacy.read_text())
+
+    return []
+
+
+def _sort_key(entry: dict[str, Any]) -> datetime:
+    """Return a datetime for sorting. Parses the frontmatter date string,
+    falling back to file mtime if unavailable or unparseable."""
+    date_str = entry.get("date", "")
+    if date_str:
+        try:
+            dt = datetime.fromisoformat(date_str)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=UTC)
+            return dt
+        except (ValueError, TypeError):
+            pass
+    mtime = entry.get("_mtime")
+    if mtime is not None:
+        return datetime.fromtimestamp(mtime, tz=UTC)
+    return datetime.min.replace(tzinfo=UTC)
+
+
+def list_notes(
+    coral_dir: str | Path,
+    island_id: str | int | None = None,
+) -> list[dict[str, Any]]:
+    """List all note entries from the notes directory.
+
+    Reads individual .md files. Falls back to legacy notes.md format.
+    Also checks the legacy 'insights/' directory for backward compatibility.
+
+    With ``island_id=None`` in multi-island mode, aggregates notes from
+    every island so ``coral notes`` shows the whole team's research.
+    """
+    coral_dir = Path(coral_dir)
+    if island_id is not None or not (coral_dir / "islands").exists():
+        return _list_notes_single(coral_dir, island_id)
+
+    entries: list[dict[str, Any]] = []
+    for view_root in _note_view_roots(coral_dir):
+        sub = _list_notes_single(coral_dir, island_id=view_root.name, clean=False)
+        for entry in sub:
+            entry["island_id"] = view_root.name
+        entries.extend(sub)
+    entries.sort(key=_sort_key)
+    _clean_note_entries(entries)
+    return entries
+
+
+def _list_notes_single(
+    coral_dir: Path, island_id: str | int | None, *, clean: bool = True
+) -> list[dict[str, Any]]:
+    notes_dir = _notes_dir(coral_dir, island_id)
+    entries = _collect_from_dir(notes_dir)
+
+    # Also read from insights/ directory if present
+    insights_dir = island_root(coral_dir, island_id) / "insights"
+    if insights_dir.is_dir():
+        seen = {e["filename"] for e in entries}
+        for e in _collect_from_dir(insights_dir):
+            if e["filename"] not in seen:
+                entries.append(e)
+
+    entries.sort(key=_sort_key)
+
+    if clean:
+        _clean_note_entries(entries)
+    return entries
+
+
+def _clean_note_entries(entries: list[dict[str, Any]]) -> None:
+    """Add display path/category fields and remove internal sort fields in place."""
+    for entry in entries:
+        entry.pop("_mtime", None)
+        full_path = entry.pop("_path", None)
+        if full_path:
+            rel_path = Path(full_path)
+            try:
+                reversed_idx = list(reversed(rel_path.parts)).index("notes")
+                notes_idx = len(rel_path.parts) - reversed_idx - 1
+                rel = str(Path(*rel_path.parts[notes_idx + 1 :]))
+            except ValueError:
+                rel = rel_path.name
+            entry["relative_path"] = rel
+            # Categorize by top-level directory
+            parts = rel.split(os.sep)
+            if len(parts) > 1:
+                entry["category"] = parts[0]  # raw, research, experiments, etc.
+            else:
+                entry["category"] = "other"
+        else:
+            entry["relative_path"] = entry.get("filename", "")
+            entry["category"] = "other"
+
+
+def _note_view_roots(coral_dir: Path) -> list[Path]:
+    """Per-island note roots in multi-island mode."""
+    from coral.hub._island import all_view_roots
+
+    return [r for r in all_view_roots(coral_dir) if r.name.isdigit()]
+
+
+def search_notes(
+    coral_dir: str | Path,
+    query: str,
+    island_id: str | int | None = None,
+) -> list[dict[str, Any]]:
+    """Search notes by keyword (case-insensitive) in title and body."""
+    query_lower = query.lower()
+    results = []
+    for entry in list_notes(coral_dir, island_id=island_id):
+        full_text = f"{entry['title']} {entry['body']}".lower()
+        if query_lower in full_text:
+            results.append(entry)
+    return results
+
+
+def get_recent_notes(
+    coral_dir: str | Path,
+    n: int = 5,
+    island_id: str | int | None = None,
+) -> list[dict[str, Any]]:
+    """Return the last N notes (most recent last in file = most recent last)."""
+    entries = list_notes(coral_dir, island_id=island_id)
+    return entries[-n:] if len(entries) > n else entries
+
+
+def format_notes_list(entries: list[dict[str, Any]]) -> str:
+    """Format note entries for terminal display."""
+    if not entries:
+        return "No notes yet."
+    lines = []
+    for i, e in enumerate(entries, 1):
+        date_str = f"[{e['date']}] " if e.get("date") else ""
+        creator_str = f" ({e['creator']})" if e.get("creator") else ""
+        lines.append(f"  {i}. {date_str}{e['title']}{creator_str}")
+    return "\n".join(lines)
+
+
+def read_note(
+    coral_dir: str | Path,
+    index: int,
+    island_id: str | int | None = None,
+) -> str | None:
+    """Read a specific note entry by index (1-based)."""
+    entries = list_notes(coral_dir, island_id=island_id)
+    if 1 <= index <= len(entries):
+        e = entries[index - 1]
+        return e["body"]
+    return None
+
+
+def read_all_notes(
+    coral_dir: str | Path,
+    island_id: str | int | None = None,
+) -> str:
+    """Read all notes concatenated."""
+    entries = list_notes(coral_dir, island_id=island_id)
+    if not entries:
+        return ""
+    parts = []
+    for e in entries:
+        parts.append(e["body"])
+    return "\n\n---\n\n".join(parts)
+
+
+def notes_by(
+    coral_dir: str | Path,
+    island_id: str | int | None,
+    agent_id: str,
+) -> list[Path]:
+    """Return absolute paths of notes whose frontmatter `creator` matches agent_id.
+
+    Notes without a `creator:` field (e.g. legacy notes, the bundled
+    notes.md) are excluded — they cannot be safely attributed and should
+    stay on the source island when their author migrates.
+    """
+    notes_dir = _notes_dir(coral_dir, island_id)
+    matched: list[Path] = []
+    for md_file in sorted(notes_dir.rglob("*.md")):
+        if not _is_user_note(md_file):
+            continue
+        try:
+            text = md_file.read_text()
+        except (OSError, UnicodeDecodeError):
+            continue
+        meta, _ = _parse_frontmatter(text)
+        if meta.get("creator") == agent_id:
+            matched.append(md_file)
+    return matched
