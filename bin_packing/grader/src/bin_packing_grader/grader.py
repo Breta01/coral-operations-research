@@ -77,6 +77,7 @@ class Grader(TaskGrader):
             f"Public: {public_score:.6f} | "
             f"Private: {private_score:.6f} | "
             f"Packed volume: {result['packed_volume']:.0f}/{result['volume_bound']:.0f} | "
+            f"Packed value: {result['packed_value']:.1f}/{result['total_value']:.1f} | "
             f"Items: {result['packed_items']}/{result['total_items']} | "
             f"Time: {result['eval_time']:.2f}s"
         )
@@ -86,6 +87,7 @@ class Grader(TaskGrader):
             line = (
                 f"{row['id']}: score={row['score']:.4f}, "
                 f"volume={row['packed_volume']:.0f}/{row['volume_bound']:.0f}, "
+                f"value={row['packed_value']:.1f}/{row['total_value']:.1f}, "
                 f"items={row['packed_items']}/{row['total_items']}"
             )
             if row.get("violations"):
@@ -106,6 +108,8 @@ class Grader(TaskGrader):
                     "score": private_score,
                     "packed_volume": sum(row["packed_volume"] for row in private_summaries),
                     "volume_bound": sum(row["volume_bound"] for row in private_summaries),
+                    "packed_value": sum(row["packed_value"] for row in private_summaries),
+                    "total_value": sum(row["total_value"] for row in private_summaries),
                     "packed_items": sum(row["packed_items"] for row in private_summaries),
                     "total_items": sum(row["total_items"] for row in private_summaries),
                 },
@@ -215,10 +219,21 @@ def _run_evaluation(
 
         def evaluate_instance(instance, raw_answer):
             item_types = {{int(item["id"]): item for item in instance["items"]}}
+            item_values = {{
+                item_id: float(item.get(
+                    "value",
+                    (float(item["length"]) * float(item["width"]) * float(item["height"])) ** 0.65,
+                ))
+                for item_id, item in item_types.items()
+            }}
             type_counts = {{item_id: 0 for item_id in item_types}}
             total_items = int(sum(item["quantity"] for item in instance["items"]))
             total_item_volume = float(sum(
                 item["quantity"] * item["length"] * item["width"] * item["height"]
+                for item in instance["items"]
+            ))
+            total_value = float(sum(
+                item["quantity"] * item_values[int(item["id"])]
                 for item in instance["items"]
             ))
             bins = instance["bins"]
@@ -236,6 +251,8 @@ def _run_evaluation(
                     "score": 0.0,
                     "packed_volume": 0.0,
                     "volume_bound": volume_bound,
+                    "packed_value": 0.0,
+                    "total_value": total_value,
                     "packed_items": 0,
                     "total_items": total_items,
                     "violations": ["instance answer must be a placement list"],
@@ -292,16 +309,19 @@ def _run_evaluation(
                 valid.append(p)
 
             packed_volume = float(sum(p["l"] * p["w"] * p["h"] for p in valid))
+            packed_value = float(sum(item_values[p["item_id"]] for p in valid))
             packed_items = len(valid)
             volume_ratio = packed_volume / volume_bound if volume_bound > 0 else 0.0
-            item_ratio = packed_items / total_items if total_items > 0 else 0.0
-            score = max(0.0, min(1.0, 0.9 * volume_ratio + 0.1 * item_ratio))
+            value_ratio = packed_value / total_value if total_value > 0 else 0.0
+            score = max(0.0, min(1.0, 0.5 * volume_ratio + 0.5 * value_ratio))
             return {{
                 "id": instance["id"],
                 "split": instance.get("split", "public"),
                 "score": score,
                 "packed_volume": packed_volume,
                 "volume_bound": volume_bound,
+                "packed_value": packed_value,
+                "total_value": total_value,
                 "packed_items": packed_items,
                 "total_items": total_items,
                 "violations": violations[:10],
@@ -334,6 +354,8 @@ def _run_evaluation(
             "eval_time": time.time() - start,
             "packed_volume": sum(row["packed_volume"] for row in rows),
             "volume_bound": sum(row["volume_bound"] for row in rows),
+            "packed_value": sum(row["packed_value"] for row in rows),
+            "total_value": sum(row["total_value"] for row in rows),
             "packed_items": sum(row["packed_items"] for row in rows),
             "total_items": sum(row["total_items"] for row in rows),
             "instances": rows,

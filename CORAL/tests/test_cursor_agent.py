@@ -179,9 +179,10 @@ def test_start_builds_baseline_argv(monkeypatch: pytest.MonkeyPatch, tmp_path: P
     assert "--workspace" in cmd
     assert cmd[cmd.index("--workspace") + 1] == str(wt)
 
-    # model=="auto" is the registry default → omit --model so the CLI picks
-    # its own default model.
-    assert "--model" not in cmd
+    # model=="auto" is passed through explicitly so the CLI receives the
+    # registry default rather than falling back to its own.
+    assert "--model" in cmd
+    assert cmd[cmd.index("--model") + 1] == "auto"
 
     # Prompt is the final positional arg, never a flag.
     assert cmd[-1] == "hello world"

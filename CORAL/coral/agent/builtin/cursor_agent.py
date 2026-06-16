@@ -167,7 +167,7 @@ class CursorAgentRuntime:
             str(worktree_path),
         ]
 
-        if model and model != "auto":
+        if model:
             cmd.extend(["--model", model])
 
         mode = opts.get("mode")

@@ -7,7 +7,7 @@ TASK_DIR="${TASK_DIR:-${REPO_ROOT}/bin_packing}"
 TASK_DIR="$(cd "${TASK_DIR}" && pwd)"
 
 TARGET_EVALS="${TARGET_EVALS:-100}"
-MAX_PARALLEL_RUNS="${MAX_PARALLEL_RUNS:-3}"
+MAX_PARALLEL_RUNS="${MAX_PARALLEL_RUNS:-6}"
 TASK_SLUG="bin-packing"
 
 for config in task.yaml task.no_knowledge.yaml task.no_heartbeats.yaml task.structured.yaml; do
@@ -82,17 +82,17 @@ launch() {
   sleep 5
 }
 
-for rep in 1 2 3; do
-  launch "full" "task.yaml" "${rep}"
-done
+# for rep in 1 2 3; do
+#   launch "full" "task.yaml" "${rep}"
+# done
 
-for rep in 1 2 3; do
-  launch "no_knowledge" "task.no_knowledge.yaml" "${rep}"
-done
+# for rep in 1 2 3; do
+#   launch "no_knowledge" "task.no_knowledge.yaml" "${rep}"
+# done
 
-for rep in 1 2 3; do
-  launch "no_heartbeats" "task.no_heartbeats.yaml" "${rep}"
-done
+# for rep in 1 2 3; do
+#   launch "no_heartbeats" "task.no_heartbeats.yaml" "${rep}"
+# done
 
 for rep in 1 2 3; do
   launch "structured" "task.structured.yaml" "${rep}"

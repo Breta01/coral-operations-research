@@ -87,3 +87,5 @@ test_claude_code/
 # files, spreadsheets, etc.) that may be large or proprietary. Only task.yaml
 # and supporting config files should be committed.
 examples/*/repo/
+
+results_old/

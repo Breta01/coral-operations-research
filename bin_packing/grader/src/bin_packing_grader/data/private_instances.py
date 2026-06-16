@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import importlib.resources
 import json
-import random
 
 
 def make_private_instances() -> list[dict]:
@@ -14,68 +13,115 @@ def make_private_instances() -> list[dict]:
     if data_file.is_file():
         return json.loads(data_file.read_text())
 
-    rng = random.Random(42)
-    cases: list[dict] = []
-    specs = [
-        ("private_01", [(40, 40, 40)], 8, (3, 8), (5, 24), True),
-        ("private_02", [(60, 45, 35)], 9, (3, 7), (4, 30), True),
-        ("private_03", [(80, 60, 55), (45, 45, 45)], 11, (2, 8), (6, 38), True),
-        ("private_04", [(100, 70, 50), (65, 65, 65)], 12, (2, 7), (8, 48), False),
-        ("private_05", [(120, 90, 75)], 14, (2, 9), (10, 55), True),
-        ("private_06", [(90, 90, 90), (70, 80, 60), (50, 50, 110)], 13, (2, 8), (8, 52), True),
-        ("private_07", [(150, 100, 80), (90, 90, 90)], 16, (2, 6), (8, 70), True),
-        ("private_08", [(35, 35, 100), (55, 45, 65)], 10, (4, 10), (3, 32), True),
-        ("private_09", [(200, 160, 120)], 18, (2, 8), (12, 90), False),
-        ("private_10", [(120, 120, 120), (80, 100, 60), (140, 60, 50)], 15, (3, 7), (8, 64), True),
-        ("private_11", [(30, 30, 30)], 7, (5, 14), (2, 18), True),
-        ("private_12", [(48, 32, 28), (28, 48, 32)], 9, (4, 12), (2, 24), True),
-        ("private_13", [(75, 75, 35), (60, 40, 80)], 12, (3, 9), (5, 42), True),
-        ("private_14", [(250, 180, 140), (160, 160, 100)], 20, (2, 7), (15, 105), True),
-        ("private_15", [(300, 220, 160)], 22, (2, 6), (20, 130), False),
-        ("private_16", [(90, 40, 40), (40, 90, 40), (40, 40, 90)], 12, (3, 10), (4, 44), True),
-        ("private_17", [(500, 320, 280), (220, 220, 220)], 24, (1, 5), (35, 190), True),
-        ("private_18", [(64, 64, 64)], 14, (4, 12), (4, 36), True),
-        ("private_19", [(110, 75, 95), (95, 70, 55)], 13, (3, 8), (8, 58), True),
-        ("private_20", [(180, 90, 60), (100, 100, 100), (70, 130, 80)], 18, (2, 7), (8, 85), True),
-    ]
-    for args in specs:
-        cases.append(_make_instance(rng, *args))
-    return cases
+    return [_make_instance(*spec) for spec in _SPECS]
+
+
+_SPECS = [
+    ("private_01", [(42, 42, 38)], 1.65),
+    ("private_02", [(60, 42, 34)], 1.85),
+    ("private_03", [(72, 54, 40)], 2.10),
+    ("private_04", [(90, 52, 46)], 2.40),
+    ("private_05", [(110, 70, 44)], 2.70),
+    ("private_06", [(64, 64, 64)], 1.90),
+    ("private_07", [(96, 48, 72)], 2.30),
+    ("private_08", [(120, 60, 50)], 2.80),
+    ("private_09", [(150, 80, 60)], 2.55),
+    ("private_10", [(180, 90, 54)], 2.95),
+    ("private_11", [(48, 36, 96)], 1.75),
+    ("private_12", [(75, 75, 30)], 2.05),
+    ("private_13", [(100, 40, 40), (100, 40, 40)], 2.25),
+    ("private_14", [(130, 65, 52)], 2.65),
+    ("private_15", [(160, 70, 70)], 3.00),
+    ("private_16", [(58, 58, 58)], 1.55),
+    ("private_17", [(200, 100, 80)], 2.85),
+    ("private_18", [(84, 42, 126)], 2.35),
+    ("private_19", [(140, 56, 42), (70, 56, 84)], 2.60),
+    ("private_20", [(220, 110, 66)], 2.90),
+]
+
+
+def _volume(dims: tuple[int, int, int]) -> int:
+    length, width, height = dims
+    return length * width * height
+
+
+def _value(dims: tuple[int, int, int], multiplier: float) -> float:
+    return round((_volume(dims) ** 0.65) * multiplier, 3)
+
+
+def _add_item(
+    items: list[dict],
+    item_id: int,
+    quantity: int,
+    dims: tuple[int, int, int],
+    value_multiplier: float,
+    role: str,
+) -> int:
+    length, width, height = dims
+    items.append(
+        {
+            "id": item_id,
+            "quantity": int(quantity),
+            "length": int(length),
+            "width": int(width),
+            "height": int(height),
+            "value": _value(dims, value_multiplier),
+            "role": role,
+        }
+    )
+    return item_id + 1
 
 
 def _make_instance(
-    rng: random.Random,
     instance_id: str,
     bin_specs: list[tuple[int, int, int]],
-    type_count: int,
-    qty_range: tuple[int, int],
-    dim_range: tuple[int, int],
-    awkward: bool,
+    target_oversubscription: float,
 ) -> dict:
-    items = []
-    for item_id in range(type_count):
-        if awkward and item_id % 4 == 0:
-            length = rng.randint(int(dim_range[1] * 0.55), dim_range[1])
-            width = rng.randint(dim_range[0], max(dim_range[0], int(dim_range[1] * 0.20)))
-            height = rng.randint(dim_range[0], max(dim_range[0], int(dim_range[1] * 0.22)))
-        elif awkward and item_id % 4 == 1:
-            length = rng.randint(dim_range[0], max(dim_range[0], int(dim_range[1] * 0.25)))
-            width = rng.randint(int(dim_range[1] * 0.45), dim_range[1])
-            height = rng.randint(dim_range[0], max(dim_range[0], int(dim_range[1] * 0.30)))
-        else:
-            length = rng.randint(*dim_range)
-            width = rng.randint(*dim_range)
-            height = rng.randint(*dim_range)
+    max_length = max(b[0] for b in bin_specs)
+    max_width = max(b[1] for b in bin_specs)
+    max_height = max(b[2] for b in bin_specs)
+    short = max(3, min(max_length, max_width, max_height) // 12)
+    thin = max(2, min(max_length, max_width, max_height) // 18)
+    slab = max(3, max_height // 9)
+    items: list[dict] = []
+    item_id = 0
 
-        items.append(
-            {
-                "id": item_id,
-                "quantity": rng.randint(*qty_range),
-                "length": length,
-                "width": width,
-                "height": height,
-            }
-        )
+    item_id = _add_item(items, item_id, 4, (max(4, max_length // 2), max(4, max_width // 2), max(3, max_height // 4)), 1.45, "complement_a")
+    item_id = _add_item(items, item_id, 6, (max(4, max_length // 3), max(4, max_width // 2), max(3, max_height // 4)), 1.40, "complement_b")
+    item_id = _add_item(items, item_id, 8, (max(4, max_length // 4), max(4, max_width // 2), max(3, max_height // 4)), 1.35, "complement_c")
+    item_id = _add_item(items, item_id, 3, (max(5, max_length - 2), max(3, thin), max(3, thin)), 1.30, "long_rod_x")
+    item_id = _add_item(items, item_id, 3, (max(3, thin), max(5, max_width - 2), max(3, thin)), 1.30, "long_rod_y")
+    item_id = _add_item(items, item_id, 3, (max(3, thin), max(3, thin), max(5, max_height - 2)), 1.30, "long_rod_z")
+    item_id = _add_item(items, item_id, 3, (max(5, max_length - 4), max(5, max_width // 3), max(3, slab)), 1.20, "wide_slab")
+    item_id = _add_item(items, item_id, 3, (max(5, max_length // 3), max(5, max_width - 3), max(3, slab)), 1.20, "deep_slab")
+    item_id = _add_item(items, item_id, 2, (max(5, max_length // 2 + 1), max(5, max_width - 1), max(3, max_height // 5)), 1.15, "near_width_blocker")
+    item_id = _add_item(items, item_id, 10, (max(4, max_length // 5), max(4, max_width // 3), max(4, max_height // 3)), 1.05, "medium_brick")
+    item_id = _add_item(items, item_id, 12, (max(4, max_length // 6), max(4, max_width // 4), max(4, max_height // 2)), 1.00, "upright_brick")
+    item_id = _add_item(items, item_id, 26, (short, short, short), 0.18, "low_value_filler")
+    _add_item(items, item_id, 18, (max(2, short // 2), short, max(2, short // 2)), 0.12, "tiny_decoy")
+
+    bin_volume = sum(_volume(spec) for spec in bin_specs)
+    item_volume = sum(
+        item["quantity"] * _volume((item["length"], item["width"], item["height"]))
+        for item in items
+    )
+    bump_order = [0, 1, 2, 6, 7, 9, 10, 11]
+    cursor = 0
+    while item_volume / bin_volume < target_oversubscription:
+        idx = bump_order[cursor % len(bump_order)]
+        items[idx]["quantity"] += 1
+        item_volume += _volume((items[idx]["length"], items[idx]["width"], items[idx]["height"]))
+        cursor += 1
+
+    cursor = 0
+    while item_volume / bin_volume > 3.0:
+        idx = bump_order[-1 - (cursor % len(bump_order))]
+        if items[idx]["quantity"] > 1:
+            items[idx]["quantity"] -= 1
+            item_volume -= _volume((items[idx]["length"], items[idx]["width"], items[idx]["height"]))
+        cursor += 1
+        if cursor > 200:
+            break
 
     return {
         "id": instance_id,

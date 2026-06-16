@@ -4,67 +4,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 40,
-        "width": 40,
-        "height": 40
+        "length": 42,
+        "width": 42,
+        "height": 38
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 8,
-        "length": 23,
-        "width": 5,
-        "height": 5
+        "quantity": 5,
+        "length": 21,
+        "width": 21,
+        "height": 9,
+        "value": 316.6,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 4,
-        "length": 6,
-        "width": 13,
-        "height": 5
+        "quantity": 7,
+        "length": 14,
+        "width": 21,
+        "height": 9,
+        "value": 234.861,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 7,
-        "length": 8,
-        "width": 22,
-        "height": 7
+        "quantity": 8,
+        "length": 10,
+        "width": 21,
+        "height": 9,
+        "value": 181.984,
+        "role": "complement_c"
       },
       {
         "id": 3,
         "quantity": 3,
-        "length": 18,
-        "width": 6,
-        "height": 5
+        "length": 40,
+        "width": 3,
+        "height": 3,
+        "value": 59.64,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 7,
-        "length": 16,
-        "width": 5,
-        "height": 5
+        "quantity": 3,
+        "length": 3,
+        "width": 40,
+        "height": 3,
+        "value": 59.64,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 8,
-        "length": 5,
-        "width": 21,
-        "height": 7
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 36,
+        "value": 55.693,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 6,
-        "length": 22,
-        "width": 18,
-        "height": 12
+        "quantity": 3,
+        "length": 38,
+        "width": 14,
+        "height": 4,
+        "value": 174.728,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 4,
-        "length": 23,
-        "width": 13,
-        "height": 5
+        "quantity": 3,
+        "length": 14,
+        "width": 39,
+        "height": 4,
+        "value": 177.703,
+        "role": "deep_slab"
+      },
+      {
+        "id": 8,
+        "quantity": 2,
+        "length": 22,
+        "width": 41,
+        "height": 7,
+        "value": 339.544,
+        "role": "near_width_blocker"
+      },
+      {
+        "id": 9,
+        "quantity": 10,
+        "length": 8,
+        "width": 14,
+        "height": 12,
+        "value": 113.409,
+        "role": "medium_brick"
+      },
+      {
+        "id": 10,
+        "quantity": 12,
+        "length": 7,
+        "width": 10,
+        "height": 19,
+        "value": 107.276,
+        "role": "upright_brick"
+      },
+      {
+        "id": 11,
+        "quantity": 26,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -74,73 +135,127 @@
       {
         "id": 0,
         "length": 60,
-        "width": 45,
-        "height": 35
+        "width": 42,
+        "height": 34
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 5,
-        "length": 27,
-        "width": 5,
-        "height": 5
+        "quantity": 6,
+        "length": 30,
+        "width": 21,
+        "height": 8,
+        "value": 369.784,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 3,
-        "length": 5,
-        "width": 19,
-        "height": 6
+        "quantity": 8,
+        "length": 20,
+        "width": 21,
+        "height": 8,
+        "value": 274.314,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 5,
-        "length": 6,
-        "width": 16,
-        "height": 7
+        "quantity": 9,
+        "length": 15,
+        "width": 21,
+        "height": 8,
+        "value": 219.404,
+        "role": "complement_c"
       },
       {
         "id": 3,
         "quantity": 3,
-        "length": 15,
-        "width": 23,
-        "height": 12
+        "length": 58,
+        "width": 3,
+        "height": 3,
+        "value": 75.933,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
         "quantity": 3,
-        "length": 27,
-        "width": 5,
-        "height": 6
+        "length": 3,
+        "width": 40,
+        "height": 3,
+        "value": 59.64,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 5,
-        "length": 7,
-        "width": 15,
-        "height": 8
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 32,
+        "value": 51.588,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 5,
-        "length": 30,
-        "width": 24,
-        "height": 23
+        "quantity": 4,
+        "length": 56,
+        "width": 14,
+        "height": 3,
+        "value": 186.473,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 3,
-        "length": 22,
-        "width": 10,
-        "height": 26
+        "quantity": 4,
+        "length": 20,
+        "width": 39,
+        "height": 3,
+        "value": 185.854,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 5,
-        "length": 16,
-        "width": 6,
-        "height": 4
+        "quantity": 2,
+        "length": 31,
+        "width": 41,
+        "height": 6,
+        "value": 383.876,
+        "role": "near_width_blocker"
+      },
+      {
+        "id": 9,
+        "quantity": 11,
+        "length": 12,
+        "width": 14,
+        "height": 11,
+        "value": 139.491,
+        "role": "medium_brick"
+      },
+      {
+        "id": 10,
+        "quantity": 13,
+        "length": 10,
+        "width": 10,
+        "height": 17,
+        "value": 125.832,
+        "role": "upright_brick"
+      },
+      {
+        "id": 11,
+        "quantity": 27,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -149,94 +264,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 80,
-        "width": 60,
-        "height": 55
-      },
-      {
-        "id": 1,
-        "length": 45,
-        "width": 45,
-        "height": 45
+        "length": 72,
+        "width": 54,
+        "height": 40
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 5,
-        "length": 22,
-        "width": 6,
-        "height": 6
+        "quantity": 6,
+        "length": 36,
+        "width": 27,
+        "height": 10,
+        "value": 566.697,
+        "role": "complement_a"
       },
       {
         "id": 1,
         "quantity": 8,
-        "length": 8,
-        "width": 31,
-        "height": 11
+        "length": 24,
+        "width": 27,
+        "height": 10,
+        "value": 420.389,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 4,
-        "length": 29,
-        "width": 16,
-        "height": 29
+        "quantity": 10,
+        "length": 18,
+        "width": 27,
+        "height": 10,
+        "value": 336.238,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 6,
-        "length": 19,
-        "width": 23,
-        "height": 10
+        "quantity": 3,
+        "length": 70,
+        "width": 3,
+        "height": 3,
+        "value": 85.805,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 5,
-        "length": 25,
-        "width": 6,
-        "height": 6
+        "quantity": 3,
+        "length": 3,
+        "width": 52,
+        "height": 3,
+        "value": 70.73,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 7,
-        "length": 9,
-        "width": 25,
-        "height": 11
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 38,
+        "value": 57.685,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 3,
-        "length": 20,
-        "width": 26,
-        "height": 9
+        "quantity": 5,
+        "length": 68,
+        "width": 18,
+        "height": 4,
+        "value": 300.316,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 4,
-        "length": 8,
-        "width": 26,
-        "height": 31
+        "quantity": 5,
+        "length": 24,
+        "width": 51,
+        "height": 4,
+        "value": 300.316,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 7,
-        "length": 22,
-        "width": 6,
-        "height": 8
+        "quantity": 2,
+        "length": 37,
+        "width": 53,
+        "height": 8,
+        "value": 613.503,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 5,
-        "length": 8,
-        "width": 23,
-        "height": 11
+        "quantity": 12,
+        "length": 14,
+        "width": 18,
+        "height": 13,
+        "value": 202.378,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 4,
-        "length": 31,
-        "width": 35,
-        "height": 15
+        "quantity": 14,
+        "length": 12,
+        "width": 13,
+        "height": 20,
+        "value": 186.724,
+        "role": "upright_brick"
+      },
+      {
+        "id": 11,
+        "quantity": 27,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -245,101 +394,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 100,
-        "width": 70,
-        "height": 50
-      },
-      {
-        "id": 1,
-        "length": 65,
-        "width": 65,
-        "height": 65
+        "length": 90,
+        "width": 52,
+        "height": 46
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 6,
-        "length": 16,
-        "width": 23,
-        "height": 43
+        "quantity": 8,
+        "length": 45,
+        "width": 26,
+        "height": 11,
+        "value": 680.133,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 6,
-        "length": 24,
-        "width": 45,
-        "height": 35
+        "quantity": 10,
+        "length": 30,
+        "width": 26,
+        "height": 11,
+        "value": 504.539,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 3,
-        "length": 33,
-        "width": 31,
-        "height": 22
+        "quantity": 11,
+        "length": 22,
+        "width": 26,
+        "height": 11,
+        "value": 397.692,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 2,
-        "length": 40,
-        "width": 39,
-        "height": 13
+        "quantity": 3,
+        "length": 88,
+        "width": 3,
+        "height": 3,
+        "value": 99.567,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
         "quantity": 3,
-        "length": 15,
-        "width": 17,
-        "height": 48
+        "length": 3,
+        "width": 50,
+        "height": 3,
+        "value": 68.95,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 5,
-        "length": 35,
-        "width": 46,
-        "height": 12
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 44,
+        "value": 63.452,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
         "quantity": 6,
-        "length": 32,
-        "width": 46,
-        "height": 37
+        "length": 86,
+        "width": 17,
+        "height": 5,
+        "value": 389.697,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 7,
-        "length": 24,
-        "width": 43,
-        "height": 8
+        "quantity": 6,
+        "length": 30,
+        "width": 49,
+        "height": 5,
+        "value": 391.082,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 7,
-        "length": 15,
-        "width": 42,
-        "height": 25
+        "quantity": 2,
+        "length": 46,
+        "width": 51,
+        "height": 9,
+        "value": 744.164,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 5,
-        "length": 29,
-        "width": 15,
-        "height": 26
+        "quantity": 13,
+        "length": 18,
+        "width": 17,
+        "height": 15,
+        "value": 251.981,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 7,
-        "length": 18,
-        "width": 37,
-        "height": 8
+        "quantity": 15,
+        "length": 15,
+        "width": 13,
+        "height": 23,
+        "value": 236.399,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 6,
-        "length": 24,
-        "width": 40,
-        "height": 19
+        "quantity": 29,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -348,109 +524,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 120,
-        "width": 90,
-        "height": 75
+        "length": 110,
+        "width": 70,
+        "height": 44
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 5,
-        "length": 33,
-        "width": 11,
-        "height": 12
+        "quantity": 9,
+        "length": 55,
+        "width": 35,
+        "height": 11,
+        "value": 940.055,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 4,
-        "length": 11,
-        "width": 47,
-        "height": 16
+        "quantity": 11,
+        "length": 36,
+        "width": 35,
+        "height": 11,
+        "value": 689.087,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 7,
-        "length": 44,
-        "width": 43,
-        "height": 10
+        "quantity": 13,
+        "length": 27,
+        "width": 35,
+        "height": 11,
+        "value": 551.15,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 7,
-        "length": 41,
-        "width": 11,
-        "height": 17
+        "quantity": 3,
+        "length": 108,
+        "width": 3,
+        "height": 3,
+        "value": 113.743,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 2,
-        "length": 55,
-        "width": 11,
-        "height": 10
+        "quantity": 3,
+        "length": 3,
+        "width": 68,
+        "height": 3,
+        "value": 84.204,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 9,
-        "length": 11,
-        "width": 29,
-        "height": 10
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 42,
+        "value": 61.562,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 4,
-        "length": 14,
-        "width": 44,
-        "height": 18
+        "quantity": 8,
+        "length": 106,
+        "width": 23,
+        "height": 4,
+        "value": 469.994,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 4,
-        "length": 52,
-        "width": 40,
-        "height": 45
+        "quantity": 8,
+        "length": 36,
+        "width": 67,
+        "height": 4,
+        "value": 466.73,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 5,
-        "length": 38,
-        "width": 11,
-        "height": 10
+        "quantity": 2,
+        "length": 56,
+        "width": 69,
+        "height": 8,
+        "value": 953.412,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 7,
-        "length": 12,
-        "width": 49,
-        "height": 15
+        "quantity": 15,
+        "length": 22,
+        "width": 23,
+        "height": 14,
+        "value": 334.095,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 3,
-        "length": 38,
-        "width": 43,
-        "height": 38
+        "quantity": 16,
+        "length": 18,
+        "width": 17,
+        "height": 22,
+        "value": 307.818,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 7,
-        "length": 25,
-        "width": 24,
-        "height": 14
+        "quantity": 30,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 5,
-        "length": 30,
-        "width": 10,
-        "height": 12
-      },
-      {
-        "id": 13,
-        "quantity": 2,
-        "length": 10,
-        "width": 28,
-        "height": 15
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -459,114 +654,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 90,
-        "width": 90,
-        "height": 90
-      },
-      {
-        "id": 1,
-        "length": 70,
-        "width": 80,
-        "height": 60
-      },
-      {
-        "id": 2,
-        "length": 50,
-        "width": 50,
-        "height": 110
+        "length": 64,
+        "width": 64,
+        "height": 64
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 8,
-        "length": 35,
-        "width": 8,
-        "height": 8
+        "quantity": 6,
+        "length": 32,
+        "width": 32,
+        "height": 16,
+        "value": 795.685,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 4,
-        "length": 10,
-        "width": 25,
-        "height": 11
+        "quantity": 7,
+        "length": 21,
+        "width": 32,
+        "height": 16,
+        "value": 584.246,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 6,
-        "length": 50,
-        "width": 39,
-        "height": 21
+        "quantity": 9,
+        "length": 16,
+        "width": 32,
+        "height": 16,
+        "value": 472.104,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 5,
-        "length": 16,
-        "width": 44,
-        "height": 44
+        "quantity": 3,
+        "length": 62,
+        "width": 3,
+        "height": 3,
+        "value": 79.297,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
         "quantity": 3,
-        "length": 35,
-        "width": 9,
-        "height": 11
+        "length": 3,
+        "width": 62,
+        "height": 3,
+        "value": 79.297,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 4,
-        "length": 8,
-        "width": 26,
-        "height": 14
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 62,
+        "value": 79.297,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 8,
-        "length": 35,
-        "width": 34,
-        "height": 37
+        "quantity": 4,
+        "length": 60,
+        "width": 21,
+        "height": 7,
+        "value": 440.287,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 7,
-        "length": 11,
-        "width": 51,
-        "height": 49
+        "quantity": 4,
+        "length": 21,
+        "width": 61,
+        "height": 7,
+        "value": 445.043,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 7,
-        "length": 31,
-        "width": 8,
-        "height": 11
+        "quantity": 2,
+        "length": 33,
+        "width": 63,
+        "height": 12,
+        "value": 829.413,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 3,
-        "length": 10,
-        "width": 48,
-        "height": 9
+        "quantity": 11,
+        "length": 12,
+        "width": 21,
+        "height": 21,
+        "value": 276.403,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 5,
-        "length": 20,
-        "width": 20,
-        "height": 42
+        "quantity": 13,
+        "length": 10,
+        "width": 16,
+        "height": 32,
+        "value": 257.647,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 4,
-        "length": 16,
-        "width": 35,
-        "height": 19
+        "quantity": 27,
+        "length": 5,
+        "width": 5,
+        "height": 5,
+        "value": 4.152,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 5,
-        "length": 42,
-        "width": 8,
-        "height": 8
+        "quantity": 18,
+        "length": 2,
+        "width": 5,
+        "height": 2,
+        "value": 0.841,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -575,129 +784,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 150,
-        "width": 100,
-        "height": 80
-      },
-      {
-        "id": 1,
-        "length": 90,
-        "width": 90,
-        "height": 90
+        "length": 96,
+        "width": 48,
+        "height": 72
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 2,
-        "length": 44,
-        "width": 8,
-        "height": 8
+        "quantity": 7,
+        "length": 48,
+        "width": 24,
+        "height": 18,
+        "value": 927.341,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 5,
-        "length": 11,
-        "width": 41,
-        "height": 14
+        "quantity": 9,
+        "length": 32,
+        "width": 24,
+        "height": 18,
+        "value": 687.923,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 5,
-        "length": 38,
-        "width": 21,
-        "height": 63
+        "quantity": 11,
+        "length": 24,
+        "width": 24,
+        "height": 18,
+        "value": 550.219,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 5,
-        "length": 65,
-        "width": 11,
-        "height": 18
+        "quantity": 3,
+        "length": 94,
+        "width": 3,
+        "height": 3,
+        "value": 103.928,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 5,
-        "length": 38,
-        "width": 11,
-        "height": 12
+        "quantity": 3,
+        "length": 3,
+        "width": 46,
+        "height": 3,
+        "value": 65.312,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 6,
-        "length": 12,
-        "width": 58,
-        "height": 19
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 70,
+        "value": 85.805,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 3,
-        "length": 50,
-        "width": 53,
-        "height": 39
+        "quantity": 6,
+        "length": 92,
+        "width": 16,
+        "height": 8,
+        "value": 531.288,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 2,
-        "length": 20,
-        "width": 26,
-        "height": 21
+        "quantity": 5,
+        "length": 32,
+        "width": 45,
+        "height": 8,
+        "value": 523.752,
+        "role": "deep_slab"
       },
       {
         "id": 8,
         "quantity": 2,
-        "length": 41,
-        "width": 13,
-        "height": 13
+        "length": 49,
+        "width": 47,
+        "height": 14,
+        "value": 979.878,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 6,
-        "length": 8,
-        "width": 68,
-        "height": 15
+        "quantity": 12,
+        "length": 19,
+        "width": 16,
+        "height": 24,
+        "value": 340.561,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 3,
-        "length": 66,
-        "width": 62,
-        "height": 41
+        "quantity": 14,
+        "length": 16,
+        "width": 12,
+        "height": 36,
+        "value": 313.143,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 2,
-        "length": 11,
-        "width": 69,
-        "height": 40
+        "quantity": 28,
+        "length": 4,
+        "width": 4,
+        "height": 4,
+        "value": 2.687,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 3,
-        "length": 49,
-        "width": 8,
-        "height": 9
-      },
-      {
-        "id": 13,
-        "quantity": 3,
-        "length": 14,
-        "width": 38,
-        "height": 17
-      },
-      {
-        "id": 14,
-        "quantity": 6,
-        "length": 45,
-        "width": 46,
-        "height": 10
-      },
-      {
-        "id": 15,
-        "quantity": 6,
-        "length": 13,
-        "width": 34,
-        "height": 50
+        "quantity": 18,
+        "length": 2,
+        "width": 4,
+        "height": 2,
+        "value": 0.728,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -706,87 +914,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 35,
-        "width": 35,
-        "height": 100
-      },
-      {
-        "id": 1,
-        "length": 55,
-        "width": 45,
-        "height": 65
+        "length": 120,
+        "width": 60,
+        "height": 50
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 9,
-        "length": 27,
-        "width": 5,
-        "height": 4
+        "quantity": 10,
+        "length": 60,
+        "width": 30,
+        "height": 12,
+        "value": 952.276,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 6,
-        "length": 8,
-        "width": 24,
-        "height": 4
+        "quantity": 11,
+        "length": 40,
+        "width": 30,
+        "height": 12,
+        "value": 706.421,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 9,
-        "length": 15,
-        "width": 7,
-        "height": 24
+        "quantity": 13,
+        "length": 30,
+        "width": 30,
+        "height": 12,
+        "value": 565.014,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 10,
-        "length": 12,
-        "width": 17,
-        "height": 13
+        "quantity": 3,
+        "length": 118,
+        "width": 3,
+        "height": 3,
+        "value": 120.483,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 8,
-        "length": 19,
-        "width": 3,
-        "height": 6
+        "quantity": 3,
+        "length": 3,
+        "width": 58,
+        "height": 3,
+        "value": 75.933,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 8,
-        "length": 7,
-        "width": 17,
-        "height": 3
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 48,
+        "value": 67.144,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 5,
-        "length": 9,
-        "width": 19,
-        "height": 11
+        "quantity": 8,
+        "length": 116,
+        "width": 20,
+        "height": 5,
+        "value": 526.113,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 4,
-        "length": 32,
-        "width": 14,
-        "height": 31
+        "quantity": 8,
+        "length": 40,
+        "width": 57,
+        "height": 5,
+        "value": 520.199,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 5,
-        "length": 24,
-        "width": 5,
-        "height": 5
+        "quantity": 2,
+        "length": 61,
+        "width": 59,
+        "height": 10,
+        "value": 1052.485,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 6,
-        "length": 6,
-        "width": 31,
-        "height": 8
+        "quantity": 15,
+        "length": 24,
+        "width": 20,
+        "height": 16,
+        "value": 352.107,
+        "role": "medium_brick"
+      },
+      {
+        "id": 10,
+        "quantity": 17,
+        "length": 20,
+        "width": 15,
+        "height": 25,
+        "value": 330.21,
+        "role": "upright_brick"
+      },
+      {
+        "id": 11,
+        "quantity": 31,
+        "length": 4,
+        "width": 4,
+        "height": 4,
+        "value": 2.687,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 4,
+        "height": 2,
+        "value": 0.728,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -795,137 +1044,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 200,
-        "width": 160,
-        "height": 120
+        "length": 150,
+        "width": 80,
+        "height": 60
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 7,
-        "length": 90,
-        "width": 79,
-        "height": 13
+        "quantity": 8,
+        "length": 75,
+        "width": 40,
+        "height": 15,
+        "value": 1534.462,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 3,
-        "length": 82,
-        "width": 50,
-        "height": 25
+        "quantity": 10,
+        "length": 50,
+        "width": 40,
+        "height": 15,
+        "value": 1138.3,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 7,
-        "length": 45,
-        "width": 26,
-        "height": 25
+        "quantity": 12,
+        "length": 37,
+        "width": 40,
+        "height": 15,
+        "value": 902.533,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 4,
-        "length": 82,
-        "width": 31,
-        "height": 46
+        "quantity": 3,
+        "length": 148,
+        "width": 3,
+        "height": 3,
+        "value": 139.595,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
         "quantity": 3,
-        "length": 89,
-        "width": 38,
-        "height": 55
+        "length": 3,
+        "width": 78,
+        "height": 3,
+        "value": 92.058,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 4,
-        "length": 45,
-        "width": 76,
-        "height": 74
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 58,
+        "value": 75.933,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 8,
-        "length": 18,
-        "width": 23,
-        "height": 66
+        "quantity": 7,
+        "length": 146,
+        "width": 26,
+        "height": 6,
+        "value": 815.721,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 4,
-        "length": 47,
-        "width": 17,
-        "height": 12
+        "quantity": 7,
+        "length": 50,
+        "width": 77,
+        "height": 6,
+        "value": 823.245,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 7,
-        "length": 28,
-        "width": 45,
-        "height": 32
+        "quantity": 2,
+        "length": 76,
+        "width": 79,
+        "height": 12,
+        "value": 1652.54,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 6,
-        "length": 68,
-        "width": 82,
-        "height": 66
+        "quantity": 14,
+        "length": 30,
+        "width": 26,
+        "height": 20,
+        "value": 558.111,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 7,
-        "length": 13,
-        "width": 26,
-        "height": 21
+        "quantity": 15,
+        "length": 25,
+        "width": 20,
+        "height": 30,
+        "value": 518.155,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 8,
-        "length": 31,
-        "width": 81,
-        "height": 16
+        "quantity": 29,
+        "length": 5,
+        "width": 5,
+        "height": 5,
+        "value": 4.152,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 3,
-        "length": 59,
-        "width": 86,
-        "height": 82
-      },
-      {
-        "id": 13,
-        "quantity": 4,
-        "length": 67,
-        "width": 28,
-        "height": 17
-      },
-      {
-        "id": 14,
-        "quantity": 3,
-        "length": 58,
-        "width": 17,
-        "height": 57
-      },
-      {
-        "id": 15,
-        "quantity": 8,
-        "length": 43,
-        "width": 25,
-        "height": 57
-      },
-      {
-        "id": 16,
-        "quantity": 3,
-        "length": 83,
-        "width": 64,
-        "height": 31
-      },
-      {
-        "id": 17,
-        "quantity": 2,
-        "length": 32,
-        "width": 34,
-        "height": 64
+        "quantity": 18,
+        "length": 2,
+        "width": 5,
+        "height": 2,
+        "value": 0.841,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -934,128 +1174,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 120,
-        "width": 120,
-        "height": 120
-      },
-      {
-        "id": 1,
-        "length": 80,
-        "width": 100,
-        "height": 60
-      },
-      {
-        "id": 2,
-        "length": 140,
-        "width": 60,
-        "height": 50
+        "length": 180,
+        "width": 90,
+        "height": 54
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 6,
-        "length": 40,
-        "width": 10,
-        "height": 14
+        "quantity": 10,
+        "length": 90,
+        "width": 45,
+        "height": 13,
+        "value": 1699.327,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 3,
-        "length": 11,
+        "quantity": 12,
+        "length": 60,
         "width": 45,
-        "height": 10
+        "height": 13,
+        "value": 1260.601,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 6,
-        "length": 32,
-        "width": 63,
-        "height": 10
+        "quantity": 14,
+        "length": 45,
+        "width": 45,
+        "height": 13,
+        "value": 1008.262,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 6,
-        "length": 22,
-        "width": 20,
-        "height": 60
+        "quantity": 3,
+        "length": 178,
+        "width": 3,
+        "height": 3,
+        "value": 157.389,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 4,
-        "length": 46,
-        "width": 10,
-        "height": 14
+        "quantity": 3,
+        "length": 3,
+        "width": 88,
+        "height": 3,
+        "value": 99.567,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 4,
-        "length": 11,
-        "width": 29,
-        "height": 18
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 52,
+        "value": 70.73,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 3,
-        "length": 33,
-        "width": 29,
-        "height": 25
+        "quantity": 8,
+        "length": 176,
+        "width": 30,
+        "height": 6,
+        "value": 1010.861,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 7,
-        "length": 57,
-        "width": 25,
-        "height": 30
+        "quantity": 8,
+        "length": 60,
+        "width": 87,
+        "height": 6,
+        "value": 1003.38,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 3,
-        "length": 47,
-        "width": 12,
-        "height": 10
+        "quantity": 2,
+        "length": 91,
+        "width": 89,
+        "height": 10,
+        "value": 1783.11,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 7,
-        "length": 9,
-        "width": 44,
-        "height": 10
+        "quantity": 15,
+        "length": 36,
+        "width": 30,
+        "height": 18,
+        "value": 643.935,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 7,
-        "length": 24,
-        "width": 10,
-        "height": 14
+        "quantity": 17,
+        "length": 30,
+        "width": 22,
+        "height": 27,
+        "value": 579.549,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 5,
-        "length": 35,
-        "width": 30,
-        "height": 54
+        "quantity": 31,
+        "length": 4,
+        "width": 4,
+        "height": 4,
+        "value": 2.687,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 3,
-        "length": 48,
-        "width": 12,
-        "height": 12
-      },
-      {
-        "id": 13,
-        "quantity": 5,
-        "length": 14,
-        "width": 64,
-        "height": 11
-      },
-      {
-        "id": 14,
-        "quantity": 3,
-        "length": 10,
-        "width": 53,
-        "height": 35
+        "quantity": 18,
+        "length": 2,
+        "width": 4,
+        "height": 2,
+        "value": 0.728,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -1064,60 +1304,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 30,
-        "width": 30,
-        "height": 30
+        "length": 48,
+        "width": 36,
+        "height": 96
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 11,
-        "length": 17,
-        "width": 2,
-        "height": 3
+        "quantity": 5,
+        "length": 24,
+        "width": 18,
+        "height": 24,
+        "value": 590.976,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 14,
-        "length": 2,
+        "quantity": 7,
+        "length": 16,
         "width": 18,
-        "height": 4
+        "height": 24,
+        "value": 438.4,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 13,
+        "quantity": 9,
         "length": 12,
-        "width": 5,
-        "height": 11
+        "width": 18,
+        "height": 24,
+        "value": 350.644,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 11,
-        "length": 11,
-        "width": 15,
-        "height": 12
+        "quantity": 3,
+        "length": 46,
+        "width": 3,
+        "height": 3,
+        "value": 65.312,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 11,
-        "length": 13,
-        "width": 2,
-        "height": 2
+        "quantity": 3,
+        "length": 3,
+        "width": 34,
+        "height": 3,
+        "value": 53.661,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 14,
-        "length": 4,
-        "width": 14,
-        "height": 3
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 94,
+        "value": 103.928,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 9,
-        "length": 11,
-        "width": 14,
-        "height": 2
+        "quantity": 3,
+        "length": 44,
+        "width": 12,
+        "height": 10,
+        "value": 315.423,
+        "role": "wide_slab"
+      },
+      {
+        "id": 7,
+        "quantity": 3,
+        "length": 16,
+        "width": 33,
+        "height": 10,
+        "value": 315.423,
+        "role": "deep_slab"
+      },
+      {
+        "id": 8,
+        "quantity": 2,
+        "length": 25,
+        "width": 35,
+        "height": 19,
+        "value": 637.078,
+        "role": "near_width_blocker"
+      },
+      {
+        "id": 9,
+        "quantity": 10,
+        "length": 9,
+        "width": 12,
+        "height": 32,
+        "value": 209.538,
+        "role": "medium_brick"
+      },
+      {
+        "id": 10,
+        "quantity": 12,
+        "length": 8,
+        "width": 9,
+        "height": 48,
+        "value": 199.56,
+        "role": "upright_brick"
+      },
+      {
+        "id": 11,
+        "quantity": 26,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -1126,80 +1434,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 48,
-        "width": 32,
-        "height": 28
-      },
-      {
-        "id": 1,
-        "length": 28,
-        "width": 48,
-        "height": 32
+        "length": 75,
+        "width": 75,
+        "height": 30
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 9,
-        "length": 17,
-        "width": 2,
-        "height": 5
+        "quantity": 7,
+        "length": 37,
+        "width": 37,
+        "height": 7,
+        "value": 561.493,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 7,
-        "length": 5,
-        "width": 17,
-        "height": 5
+        "quantity": 8,
+        "length": 25,
+        "width": 37,
+        "height": 7,
+        "value": 420.179,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 5,
+        "quantity": 10,
         "length": 18,
-        "width": 17,
-        "height": 7
+        "width": 37,
+        "height": 7,
+        "value": 327.27,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 9,
-        "length": 11,
-        "width": 18,
-        "height": 23
+        "quantity": 3,
+        "length": 73,
+        "width": 3,
+        "height": 3,
+        "value": 88.178,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 7,
-        "length": 14,
-        "width": 2,
-        "height": 4
+        "quantity": 3,
+        "length": 3,
+        "width": 73,
+        "height": 3,
+        "value": 88.178,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 4,
+        "quantity": 3,
         "length": 3,
-        "width": 12,
-        "height": 2
+        "width": 3,
+        "height": 28,
+        "value": 47.299,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
         "quantity": 5,
-        "length": 9,
-        "width": 17,
-        "height": 21
+        "length": 71,
+        "width": 25,
+        "height": 3,
+        "value": 317.168,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 7,
-        "length": 16,
-        "width": 15,
-        "height": 22
+        "quantity": 5,
+        "length": 25,
+        "width": 72,
+        "height": 3,
+        "value": 320.064,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 11,
-        "length": 24,
-        "width": 4,
-        "height": 5
+        "quantity": 2,
+        "length": 38,
+        "width": 74,
+        "height": 6,
+        "value": 643.215,
+        "role": "near_width_blocker"
+      },
+      {
+        "id": 9,
+        "quantity": 12,
+        "length": 15,
+        "width": 25,
+        "height": 10,
+        "value": 220.958,
+        "role": "medium_brick"
+      },
+      {
+        "id": 10,
+        "quantity": 14,
+        "length": 12,
+        "width": 18,
+        "height": 15,
+        "value": 191.361,
+        "role": "upright_brick"
+      },
+      {
+        "id": 11,
+        "quantity": 28,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -1208,101 +1564,134 @@
     "bins": [
       {
         "id": 0,
-        "length": 75,
-        "width": 75,
-        "height": 35
+        "length": 100,
+        "width": 40,
+        "height": 40
       },
       {
         "id": 1,
-        "length": 60,
+        "length": 100,
         "width": 40,
-        "height": 80
+        "height": 40
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 8,
-        "length": 35,
-        "width": 6,
-        "height": 6
+        "quantity": 17,
+        "length": 50,
+        "width": 20,
+        "height": 10,
+        "value": 577.255,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 9,
-        "length": 10,
-        "width": 18,
-        "height": 6
+        "quantity": 18,
+        "length": 33,
+        "width": 20,
+        "height": 10,
+        "value": 425.433,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 9,
-        "length": 32,
-        "width": 19,
-        "height": 16
+        "quantity": 20,
+        "length": 25,
+        "width": 20,
+        "height": 10,
+        "value": 342.503,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 7,
-        "length": 38,
-        "width": 34,
-        "height": 8
+        "quantity": 3,
+        "length": 98,
+        "width": 3,
+        "height": 3,
+        "value": 106.782,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 4,
-        "length": 30,
-        "width": 5,
-        "height": 8
+        "quantity": 3,
+        "length": 3,
+        "width": 38,
+        "height": 3,
+        "value": 57.685,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 9,
-        "length": 8,
-        "width": 39,
-        "height": 10
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 38,
+        "value": 57.685,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 9,
-        "length": 33,
-        "width": 37,
-        "height": 32
+        "quantity": 15,
+        "length": 96,
+        "width": 13,
+        "height": 4,
+        "value": 304.13,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 8,
-        "length": 40,
-        "width": 33,
-        "height": 15
+        "quantity": 15,
+        "length": 33,
+        "width": 37,
+        "height": 4,
+        "value": 299.837,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 9,
-        "length": 38,
-        "width": 8,
-        "height": 7
+        "quantity": 2,
+        "length": 51,
+        "width": 39,
+        "height": 8,
+        "value": 619.183,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 9,
-        "length": 6,
-        "width": 38,
-        "height": 9
+        "quantity": 22,
+        "length": 20,
+        "width": 13,
+        "height": 13,
+        "value": 206.531,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 5,
-        "length": 38,
-        "width": 36,
-        "height": 20
+        "quantity": 24,
+        "length": 16,
+        "width": 10,
+        "height": 20,
+        "value": 189.822,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 4,
-        "length": 33,
-        "width": 9,
-        "height": 23
+        "quantity": 38,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -1311,157 +1700,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 250,
-        "width": 180,
-        "height": 140
-      },
-      {
-        "id": 1,
-        "length": 160,
-        "width": 160,
-        "height": 100
+        "length": 130,
+        "width": 65,
+        "height": 52
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 6,
-        "length": 74,
-        "width": 17,
-        "height": 20
+        "quantity": 9,
+        "length": 65,
+        "width": 32,
+        "height": 13,
+        "value": 1101.977,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 3,
-        "length": 16,
-        "width": 55,
-        "height": 19
+        "quantity": 11,
+        "length": 43,
+        "width": 32,
+        "height": 13,
+        "value": 813.379,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 7,
-        "length": 64,
-        "width": 103,
-        "height": 34
+        "quantity": 13,
+        "length": 32,
+        "width": 32,
+        "height": 13,
+        "value": 647.28,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 5,
-        "length": 42,
-        "width": 23,
-        "height": 68
+        "quantity": 3,
+        "length": 128,
+        "width": 3,
+        "height": 3,
+        "value": 127.024,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 5,
-        "length": 78,
-        "width": 19,
-        "height": 22
+        "quantity": 3,
+        "length": 3,
+        "width": 63,
+        "height": 3,
+        "value": 80.126,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 5,
-        "length": 15,
-        "width": 60,
-        "height": 28
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 50,
+        "value": 68.95,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 6,
-        "length": 89,
-        "width": 104,
-        "height": 17
+        "quantity": 8,
+        "length": 126,
+        "width": 21,
+        "height": 5,
+        "value": 573.053,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 4,
-        "length": 63,
-        "width": 76,
-        "height": 15
+        "quantity": 7,
+        "length": 43,
+        "width": 62,
+        "height": 5,
+        "value": 575.865,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 5,
-        "length": 76,
-        "width": 21,
-        "height": 21
+        "quantity": 2,
+        "length": 66,
+        "width": 64,
+        "height": 10,
+        "value": 1167.934,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 5,
-        "length": 23,
-        "width": 94,
-        "height": 22
+        "quantity": 14,
+        "length": 26,
+        "width": 21,
+        "height": 17,
+        "value": 398.25,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 5,
-        "length": 43,
-        "width": 49,
-        "height": 70
+        "quantity": 16,
+        "length": 21,
+        "width": 16,
+        "height": 26,
+        "value": 364.631,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 7,
-        "length": 18,
-        "width": 64,
-        "height": 58
+        "quantity": 30,
+        "length": 4,
+        "width": 4,
+        "height": 4,
+        "value": 2.687,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 7,
-        "length": 100,
-        "width": 21,
-        "height": 21
-      },
-      {
-        "id": 13,
-        "quantity": 3,
-        "length": 17,
-        "width": 100,
-        "height": 29
-      },
-      {
-        "id": 14,
-        "quantity": 5,
-        "length": 94,
-        "width": 83,
-        "height": 18
-      },
-      {
-        "id": 15,
-        "quantity": 2,
-        "length": 90,
-        "width": 87,
-        "height": 99
-      },
-      {
-        "id": 16,
-        "quantity": 3,
-        "length": 62,
-        "width": 20,
-        "height": 21
-      },
-      {
-        "id": 17,
-        "quantity": 4,
-        "length": 22,
-        "width": 58,
-        "height": 16
-      },
-      {
-        "id": 18,
-        "quantity": 5,
-        "length": 63,
-        "width": 56,
-        "height": 42
-      },
-      {
-        "id": 19,
-        "quantity": 4,
-        "length": 56,
-        "width": 58,
-        "height": 63
+        "quantity": 18,
+        "length": 2,
+        "width": 4,
+        "height": 2,
+        "value": 0.728,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -1470,165 +1830,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 300,
-        "width": 220,
-        "height": 160
+        "length": 160,
+        "width": 70,
+        "height": 70
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 4,
-        "length": 116,
-        "width": 126,
-        "height": 73
+        "quantity": 10,
+        "length": 80,
+        "width": 35,
+        "height": 17,
+        "value": 1591.522,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 2,
-        "length": 126,
-        "width": 30,
-        "height": 80
+        "quantity": 12,
+        "length": 53,
+        "width": 35,
+        "height": 17,
+        "value": 1175.827,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 4,
-        "length": 115,
-        "width": 89,
-        "height": 26
+        "quantity": 14,
+        "length": 40,
+        "width": 35,
+        "height": 17,
+        "value": 944.297,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 2,
-        "length": 48,
-        "width": 103,
-        "height": 28
+        "quantity": 3,
+        "length": 158,
+        "width": 3,
+        "height": 3,
+        "value": 145.656,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
         "quantity": 3,
-        "length": 116,
-        "width": 23,
-        "height": 51
+        "length": 3,
+        "width": 68,
+        "height": 3,
+        "value": 84.204,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
         "quantity": 3,
-        "length": 127,
-        "width": 22,
-        "height": 99
+        "length": 3,
+        "width": 3,
+        "height": 68,
+        "value": 84.204,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 2,
-        "length": 50,
-        "width": 36,
-        "height": 80
+        "quantity": 9,
+        "length": 156,
+        "width": 23,
+        "height": 7,
+        "value": 869.259,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 4,
-        "length": 92,
-        "width": 47,
-        "height": 79
+        "quantity": 9,
+        "length": 53,
+        "width": 67,
+        "height": 7,
+        "value": 863.422,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 6,
-        "length": 118,
-        "width": 67,
-        "height": 41
+        "quantity": 2,
+        "length": 81,
+        "width": 69,
+        "height": 14,
+        "value": 1743.606,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 2,
-        "length": 97,
-        "width": 115,
-        "height": 111
+        "quantity": 16,
+        "length": 32,
+        "width": 23,
+        "height": 23,
+        "value": 588.549,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 4,
-        "length": 119,
-        "width": 124,
-        "height": 40
+        "quantity": 17,
+        "length": 26,
+        "width": 17,
+        "height": 35,
+        "value": 528.651,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 4,
-        "length": 33,
-        "width": 94,
-        "height": 23
+        "quantity": 30,
+        "length": 5,
+        "width": 5,
+        "height": 5,
+        "value": 4.152,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 5,
-        "length": 93,
-        "width": 106,
-        "height": 68
-      },
-      {
-        "id": 13,
-        "quantity": 6,
-        "length": 111,
-        "width": 45,
-        "height": 29
-      },
-      {
-        "id": 14,
-        "quantity": 3,
-        "length": 108,
-        "width": 126,
-        "height": 100
-      },
-      {
-        "id": 15,
-        "quantity": 4,
-        "length": 33,
-        "width": 109,
-        "height": 118
-      },
-      {
-        "id": 16,
-        "quantity": 2,
-        "length": 128,
-        "width": 107,
-        "height": 96
-      },
-      {
-        "id": 17,
-        "quantity": 2,
-        "length": 121,
-        "width": 92,
-        "height": 120
-      },
-      {
-        "id": 18,
-        "quantity": 4,
-        "length": 64,
-        "width": 88,
-        "height": 74
-      },
-      {
-        "id": 19,
-        "quantity": 4,
-        "length": 28,
-        "width": 84,
-        "height": 102
-      },
-      {
-        "id": 20,
-        "quantity": 5,
-        "length": 21,
-        "width": 128,
-        "height": 73
-      },
-      {
-        "id": 21,
-        "quantity": 5,
-        "length": 33,
-        "width": 75,
-        "height": 66
+        "quantity": 18,
+        "length": 2,
+        "width": 5,
+        "height": 2,
+        "value": 0.841,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -1637,107 +1960,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 90,
-        "width": 40,
-        "height": 40
-      },
-      {
-        "id": 1,
-        "length": 40,
-        "width": 90,
-        "height": 40
-      },
-      {
-        "id": 2,
-        "length": 40,
-        "width": 40,
-        "height": 90
+        "length": 58,
+        "width": 58,
+        "height": 58
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 7,
-        "length": 28,
-        "width": 7,
-        "height": 5
+        "quantity": 4,
+        "length": 29,
+        "width": 29,
+        "height": 14,
+        "value": 641.902,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 7,
-        "length": 11,
-        "width": 33,
-        "height": 10
+        "quantity": 6,
+        "length": 19,
+        "width": 29,
+        "height": 14,
+        "value": 470.825,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 7,
-        "length": 24,
-        "width": 19,
-        "height": 9
+        "quantity": 8,
+        "length": 14,
+        "width": 29,
+        "height": 14,
+        "value": 372.271,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 9,
-        "length": 32,
-        "width": 19,
-        "height": 33
+        "quantity": 3,
+        "length": 56,
+        "width": 3,
+        "height": 3,
+        "value": 74.22,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 8,
-        "length": 34,
-        "width": 4,
-        "height": 7
+        "quantity": 3,
+        "length": 3,
+        "width": 56,
+        "height": 3,
+        "value": 74.22,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 8,
-        "length": 6,
-        "width": 34,
-        "height": 7
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 56,
+        "value": 74.22,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 7,
-        "length": 20,
-        "width": 25,
-        "height": 21
+        "quantity": 3,
+        "length": 54,
+        "width": 19,
+        "height": 6,
+        "value": 348.518,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 6,
-        "length": 39,
-        "width": 4,
-        "height": 37
+        "quantity": 3,
+        "length": 19,
+        "width": 55,
+        "height": 6,
+        "value": 352.7,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 9,
-        "length": 26,
-        "width": 5,
-        "height": 9
+        "quantity": 2,
+        "length": 30,
+        "width": 57,
+        "height": 11,
+        "value": 690.32,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
         "quantity": 10,
         "length": 11,
-        "width": 36,
-        "height": 7
+        "width": 19,
+        "height": 19,
+        "value": 229.337,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 4,
-        "length": 35,
-        "width": 32,
-        "height": 5
+        "quantity": 12,
+        "length": 9,
+        "width": 14,
+        "height": 29,
+        "value": 206.919,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 6,
-        "length": 22,
-        "width": 18,
-        "height": 29
+        "quantity": 26,
+        "length": 4,
+        "width": 4,
+        "height": 4,
+        "value": 2.687,
+        "role": "low_value_filler"
+      },
+      {
+        "id": 12,
+        "quantity": 18,
+        "length": 2,
+        "width": 4,
+        "height": 2,
+        "value": 0.728,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -1746,185 +2090,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 500,
-        "width": 320,
-        "height": 280
-      },
-      {
-        "id": 1,
-        "length": 220,
-        "width": 220,
-        "height": 220
+        "length": 200,
+        "width": 100,
+        "height": 80
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 5,
-        "length": 143,
-        "width": 37,
-        "height": 38
+        "quantity": 10,
+        "length": 100,
+        "width": 50,
+        "height": 20,
+        "value": 2578.505,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 5,
-        "length": 43,
-        "width": 129,
-        "height": 48
+        "quantity": 11,
+        "length": 66,
+        "width": 50,
+        "height": 20,
+        "value": 1900.341,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 3,
-        "length": 119,
-        "width": 125,
-        "height": 151
+        "quantity": 13,
+        "length": 50,
+        "width": 50,
+        "height": 20,
+        "value": 1529.904,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 1,
-        "length": 113,
-        "width": 99,
-        "height": 94
+        "quantity": 3,
+        "length": 198,
+        "width": 4,
+        "height": 4,
+        "value": 245.162,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 5,
-        "length": 128,
-        "width": 37,
-        "height": 35
+        "quantity": 3,
+        "length": 4,
+        "width": 98,
+        "height": 4,
+        "value": 155.209,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 2,
-        "length": 47,
-        "width": 173,
-        "height": 40
+        "quantity": 3,
+        "length": 4,
+        "width": 4,
+        "height": 78,
+        "value": 133.808,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 5,
-        "length": 90,
-        "width": 158,
-        "height": 105
+        "quantity": 8,
+        "length": 196,
+        "width": 33,
+        "height": 8,
+        "value": 1390.562,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 1,
-        "length": 169,
-        "width": 187,
-        "height": 107
+        "quantity": 8,
+        "length": 66,
+        "width": 97,
+        "height": 8,
+        "value": 1381.322,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 3,
-        "length": 128,
-        "width": 37,
-        "height": 36
+        "quantity": 2,
+        "length": 101,
+        "width": 99,
+        "height": 16,
+        "value": 2775.541,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 5,
-        "length": 37,
-        "width": 123,
-        "height": 35
+        "quantity": 15,
+        "length": 40,
+        "width": 33,
+        "height": 26,
+        "value": 931.741,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 1,
-        "length": 67,
-        "width": 105,
-        "height": 46
+        "quantity": 17,
+        "length": 33,
+        "width": 25,
+        "height": 40,
+        "value": 865.036,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 4,
-        "length": 176,
-        "width": 109,
-        "height": 67
+        "quantity": 31,
+        "length": 6,
+        "width": 6,
+        "height": 6,
+        "value": 5.925,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 3,
-        "length": 117,
-        "width": 35,
-        "height": 39
-      },
-      {
-        "id": 13,
-        "quantity": 3,
-        "length": 42,
-        "width": 146,
-        "height": 49
-      },
-      {
-        "id": 14,
-        "quantity": 4,
-        "length": 82,
-        "width": 48,
-        "height": 99
-      },
-      {
-        "id": 15,
-        "quantity": 4,
-        "length": 64,
-        "width": 51,
-        "height": 137
-      },
-      {
-        "id": 16,
-        "quantity": 2,
-        "length": 113,
-        "width": 35,
-        "height": 36
-      },
-      {
-        "id": 17,
-        "quantity": 1,
-        "length": 47,
-        "width": 157,
-        "height": 44
-      },
-      {
-        "id": 18,
-        "quantity": 4,
-        "length": 98,
-        "width": 65,
-        "height": 177
-      },
-      {
-        "id": 19,
-        "quantity": 5,
-        "length": 190,
-        "width": 187,
-        "height": 92
-      },
-      {
-        "id": 20,
-        "quantity": 3,
-        "length": 152,
-        "width": 38,
-        "height": 38
-      },
-      {
-        "id": 21,
-        "quantity": 5,
-        "length": 44,
-        "width": 139,
-        "height": 44
-      },
-      {
-        "id": 22,
-        "quantity": 2,
-        "length": 50,
-        "width": 60,
-        "height": 88
-      },
-      {
-        "id": 23,
-        "quantity": 2,
-        "length": 102,
-        "width": 55,
-        "height": 75
+        "quantity": 18,
+        "length": 3,
+        "width": 6,
+        "height": 3,
+        "value": 1.604,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -1933,109 +2220,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 64,
-        "width": 64,
-        "height": 64
+        "length": 84,
+        "width": 42,
+        "height": 126
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 4,
-        "length": 24,
-        "width": 4,
-        "height": 5
+        "quantity": 8,
+        "length": 42,
+        "width": 21,
+        "height": 31,
+        "value": 1109.961,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 11,
-        "length": 7,
-        "width": 30,
-        "height": 9
+        "quantity": 9,
+        "length": 28,
+        "width": 21,
+        "height": 31,
+        "value": 823.395,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 8,
-        "length": 22,
-        "width": 6,
-        "height": 18
+        "quantity": 11,
+        "length": 21,
+        "width": 21,
+        "height": 31,
+        "value": 658.573,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 7,
-        "length": 22,
-        "width": 33,
-        "height": 8
+        "quantity": 3,
+        "length": 82,
+        "width": 3,
+        "height": 3,
+        "value": 95.1,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 5,
-        "length": 27,
-        "width": 5,
-        "height": 7
+        "quantity": 3,
+        "length": 3,
+        "width": 40,
+        "height": 3,
+        "value": 59.64,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 6,
-        "length": 8,
-        "width": 23,
-        "height": 9
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 124,
+        "value": 124.43,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 4,
-        "length": 21,
-        "width": 13,
-        "height": 8
+        "quantity": 6,
+        "length": 80,
+        "width": 14,
+        "height": 14,
+        "value": 639.965,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 11,
-        "length": 14,
-        "width": 23,
-        "height": 22
+        "quantity": 6,
+        "length": 28,
+        "width": 39,
+        "height": 14,
+        "value": 629.519,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 10,
-        "length": 22,
-        "width": 7,
-        "height": 6
+        "quantity": 2,
+        "length": 43,
+        "width": 41,
+        "height": 25,
+        "value": 1200.668,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 11,
-        "length": 6,
-        "width": 32,
-        "height": 8
+        "quantity": 13,
+        "length": 16,
+        "width": 14,
+        "height": 42,
+        "value": 401.756,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 10,
-        "length": 32,
-        "width": 9,
-        "height": 6
+        "quantity": 15,
+        "length": 14,
+        "width": 10,
+        "height": 63,
+        "value": 366.906,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 5,
-        "length": 24,
-        "width": 20,
-        "height": 5
+        "quantity": 29,
+        "length": 3,
+        "width": 3,
+        "height": 3,
+        "value": 1.533,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 4,
-        "length": 26,
-        "width": 4,
-        "height": 6
-      },
-      {
-        "id": 13,
-        "quantity": 11,
-        "length": 5,
-        "width": 31,
-        "height": 8
+        "quantity": 18,
+        "length": 2,
+        "width": 3,
+        "height": 2,
+        "value": 0.603,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -2044,108 +2350,134 @@
     "bins": [
       {
         "id": 0,
-        "length": 110,
-        "width": 75,
-        "height": 95
+        "length": 140,
+        "width": 56,
+        "height": 42
       },
       {
         "id": 1,
-        "length": 95,
-        "width": 70,
-        "height": 55
+        "length": 70,
+        "width": 56,
+        "height": 84
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 6,
-        "length": 39,
-        "width": 9,
-        "height": 12
+        "quantity": 9,
+        "length": 70,
+        "width": 28,
+        "height": 21,
+        "value": 1448.028,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 6,
-        "length": 13,
-        "width": 57,
-        "height": 9
+        "quantity": 10,
+        "length": 46,
+        "width": 28,
+        "height": 21,
+        "value": 1064.182,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 5,
-        "length": 30,
-        "width": 34,
-        "height": 29
+        "quantity": 12,
+        "length": 35,
+        "width": 28,
+        "height": 21,
+        "value": 859.158,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 5,
-        "length": 50,
-        "width": 14,
-        "height": 18
+        "quantity": 3,
+        "length": 138,
+        "width": 3,
+        "height": 3,
+        "value": 133.39,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 8,
-        "length": 44,
-        "width": 11,
-        "height": 10
+        "quantity": 3,
+        "length": 3,
+        "width": 54,
+        "height": 3,
+        "value": 72.486,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
         "quantity": 3,
-        "length": 11,
-        "width": 28,
-        "height": 15
+        "length": 3,
+        "width": 3,
+        "height": 82,
+        "value": 95.1,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 3,
-        "length": 28,
-        "width": 24,
-        "height": 28
+        "quantity": 7,
+        "length": 136,
+        "width": 18,
+        "height": 9,
+        "value": 798.3,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 3,
-        "length": 57,
-        "width": 33,
-        "height": 40
+        "quantity": 7,
+        "length": 46,
+        "width": 53,
+        "height": 9,
+        "value": 796.179,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 3,
-        "length": 52,
-        "width": 11,
-        "height": 11
+        "quantity": 2,
+        "length": 71,
+        "width": 55,
+        "height": 16,
+        "value": 1506.363,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 6,
-        "length": 9,
-        "width": 49,
-        "height": 17
+        "quantity": 14,
+        "length": 28,
+        "width": 18,
+        "height": 28,
+        "value": 522.904,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 3,
-        "length": 48,
-        "width": 36,
-        "height": 56
+        "quantity": 16,
+        "length": 23,
+        "width": 14,
+        "height": 42,
+        "value": 484.416,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 4,
-        "length": 21,
-        "width": 25,
-        "height": 43
+        "quantity": 30,
+        "length": 4,
+        "width": 4,
+        "height": 4,
+        "value": 2.687,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 3,
-        "length": 40,
-        "width": 11,
-        "height": 11
+        "quantity": 18,
+        "length": 2,
+        "width": 4,
+        "height": 2,
+        "value": 0.728,
+        "role": "tiny_decoy"
       }
     ]
   },
@@ -2154,149 +2486,128 @@
     "bins": [
       {
         "id": 0,
-        "length": 180,
-        "width": 90,
-        "height": 60
-      },
-      {
-        "id": 1,
-        "length": 100,
-        "width": 100,
-        "height": 100
-      },
-      {
-        "id": 2,
-        "length": 70,
-        "width": 130,
-        "height": 80
+        "length": 220,
+        "width": 110,
+        "height": 66
       }
     ],
     "items": [
       {
         "id": 0,
-        "quantity": 7,
-        "length": 47,
-        "width": 17,
-        "height": 11
+        "quantity": 10,
+        "length": 110,
+        "width": 55,
+        "height": 16,
+        "value": 2524.567,
+        "role": "complement_a"
       },
       {
         "id": 1,
-        "quantity": 2,
-        "length": 10,
-        "width": 57,
-        "height": 25
+        "quantity": 12,
+        "length": 73,
+        "width": 55,
+        "height": 16,
+        "value": 1867.246,
+        "role": "complement_b"
       },
       {
         "id": 2,
-        "quantity": 3,
-        "length": 78,
-        "width": 60,
-        "height": 19
+        "quantity": 13,
+        "length": 55,
+        "width": 55,
+        "height": 16,
+        "value": 1497.901,
+        "role": "complement_c"
       },
       {
         "id": 3,
-        "quantity": 7,
-        "length": 22,
-        "width": 67,
-        "height": 23
+        "quantity": 3,
+        "length": 218,
+        "width": 3,
+        "height": 3,
+        "value": 179.555,
+        "role": "long_rod_x"
       },
       {
         "id": 4,
-        "quantity": 6,
-        "length": 55,
-        "width": 15,
-        "height": 12
+        "quantity": 3,
+        "length": 3,
+        "width": 108,
+        "height": 3,
+        "value": 113.743,
+        "role": "long_rod_y"
       },
       {
         "id": 5,
-        "quantity": 5,
-        "length": 19,
-        "width": 55,
-        "height": 21
+        "quantity": 3,
+        "length": 3,
+        "width": 3,
+        "height": 64,
+        "value": 80.95,
+        "role": "long_rod_z"
       },
       {
         "id": 6,
-        "quantity": 6,
-        "length": 68,
-        "width": 39,
-        "height": 66
+        "quantity": 8,
+        "length": 216,
+        "width": 36,
+        "height": 7,
+        "value": 1437.098,
+        "role": "wide_slab"
       },
       {
         "id": 7,
-        "quantity": 6,
-        "length": 26,
-        "width": 57,
-        "height": 32
+        "quantity": 8,
+        "length": 73,
+        "width": 107,
+        "height": 7,
+        "value": 1441.3,
+        "role": "deep_slab"
       },
       {
         "id": 8,
-        "quantity": 4,
-        "length": 78,
-        "width": 10,
-        "height": 9
+        "quantity": 2,
+        "length": 111,
+        "width": 109,
+        "height": 13,
+        "value": 2745.037,
+        "role": "near_width_blocker"
       },
       {
         "id": 9,
-        "quantity": 6,
-        "length": 20,
-        "width": 64,
-        "height": 18
+        "quantity": 15,
+        "length": 44,
+        "width": 36,
+        "height": 22,
+        "value": 941.033,
+        "role": "medium_brick"
       },
       {
         "id": 10,
-        "quantity": 7,
-        "length": 42,
-        "width": 8,
-        "height": 44
+        "quantity": 17,
+        "length": 36,
+        "width": 27,
+        "height": 33,
+        "value": 849.214,
+        "role": "upright_brick"
       },
       {
         "id": 11,
-        "quantity": 7,
-        "length": 46,
-        "width": 83,
-        "height": 82
+        "quantity": 31,
+        "length": 5,
+        "width": 5,
+        "height": 5,
+        "value": 4.152,
+        "role": "low_value_filler"
       },
       {
         "id": 12,
-        "quantity": 6,
-        "length": 77,
-        "width": 10,
-        "height": 15
-      },
-      {
-        "id": 13,
-        "quantity": 6,
-        "length": 15,
-        "width": 60,
-        "height": 18
-      },
-      {
-        "id": 14,
-        "quantity": 4,
-        "length": 77,
-        "width": 56,
-        "height": 66
-      },
-      {
-        "id": 15,
-        "quantity": 5,
-        "length": 32,
-        "width": 38,
-        "height": 81
-      },
-      {
-        "id": 16,
-        "quantity": 4,
-        "length": 60,
-        "width": 14,
-        "height": 8
-      },
-      {
-        "id": 17,
-        "quantity": 5,
-        "length": 19,
-        "width": 68,
-        "height": 20
+        "quantity": 18,
+        "length": 2,
+        "width": 5,
+        "height": 2,
+        "value": 0.841,
+        "role": "tiny_decoy"
       }
     ]
   }

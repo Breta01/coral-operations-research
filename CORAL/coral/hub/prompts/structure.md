@@ -5,16 +5,19 @@ Pause your current work and update the structured experiment knowledge bundle at
 help every agent decide whether to stay with an idea, branch from it, or abandon
 it.
 
+Use `{shared_dir}/notes/structured/...` paths for all reads and writes. The
+runtime shared directory path is the writable interface exposed to you.
+
 The structured bundle uses an OKF-style Markdown format: ordinary Markdown files
 with YAML frontmatter, directory structure, and links. Do not create a separate
 JSON or YAML graph manifest. The Markdown files are the source of truth.
 
 ### Required bundle shape
 
-Maintain these paths when relevant:
+Maintain these paths when relevant, always under `{shared_dir}/`:
 
 ```text
-notes/structured/
+{shared_dir}/notes/structured/
   index.md
   log.md
   experiments/<commit>.md
@@ -80,7 +83,7 @@ confidence unless repeated evidence supports them.
 ### Step 2: Create or update experiment nodes
 
 For each recent evaluated commit that is not represented yet, create
-`experiments/<commit>.md`.
+`{shared_dir}/notes/structured/experiments/<commit>.md`.
 
 Each experiment node should include:
 - Commit hash and parent hash when known.
@@ -96,7 +99,7 @@ not proof that the whole idea is dead.
 ### Step 3: Create or update direction nodes
 
 For meaningful transitions such as `A -> B` or `B -> C`, create or update
-`directions/<parent>--<child>.md`.
+`{shared_dir}/notes/structured/directions/<parent>--<child>.md`.
 
 Each direction node should answer:
 - What hypothesis motivated the transition?

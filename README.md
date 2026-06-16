@@ -38,6 +38,13 @@ Grader used 20 test problems for evaluation plus additional 5 problems are avail
 
 We defined aditional task files `task.no_heartbeats.yaml` and `task.no_knowledge.yaml` are implemented.
 
+The full ablation evaluation can be run using:
+```bash
+./scripts/run_ablation.sh
+```
+
+This will run each task 3 times for 100 evaluations. I can the number of evaluations to 100 to make the runs comparable. Alternative way would be to cap a run time per task, but that might be harder to enforce fairly during parallel evaluation.
+
 ### `task.no_heartbeats.yaml`
 We implement this by setting hearbeat `every` to very large number:
 ```yaml
