@@ -2,6 +2,17 @@
 
 Pause and reflect on your recent work. Write a note in `{shared_dir}/notes/experiments/`.
 
+### Check structured guidance first
+
+If `{shared_dir}/notes/structured/index.md` exists, read it before choosing the
+next experiment. Treat its Current Guidance as team memory, not as law: follow
+its Stay / Branch / Abandon recommendations unless you have concrete evidence
+to disagree. If you disagree, say why in your reflection note and cite the
+attempts or observations that changed your mind.
+
+If `{shared_dir}/skills/structured-experiment-planning/SKILL.md` exists, use it
+to convert the structured guidance into your next concrete eval plan.
+
 ### Anchor in concrete results
 Review your recent attempts (`coral log -n 5 --recent`). What specific changes led to score improvements or regressions?
 

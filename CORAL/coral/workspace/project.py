@@ -45,6 +45,7 @@ def slugify(name: str) -> str:
 _SEED_SKILLS_DIR = Path(__file__).parent.parent / "template" / "skills"
 _SEED_AGENTS_DIR = Path(__file__).parent.parent / "template" / "agents"
 _ROLE_TEMPLATE_PATH = Path(__file__).parent.parent / "template" / "role_template.md"
+_STRUCTURED_ONLY_SKILLS = {"structured-experiment-planning"}
 
 
 _PER_ISLAND_SUBDIRS = (
@@ -77,6 +78,7 @@ def _build_island_subtree(
     user_skill_paths: list[str],
     *,
     knowledge: bool = True,
+    structured_knowledge: bool = False,
 ) -> None:
     """Create the per-island state directory tree and seed bundled assets.
 
@@ -87,11 +89,16 @@ def _build_island_subtree(
     for sub in _PER_ISLAND_SUBDIRS:
         (island_root / sub).mkdir(parents=True, exist_ok=True)
 
+    if knowledge and structured_knowledge:
+        _init_structured_notes(island_root)
+
     if knowledge:
         # Seed bundled skills from coral/template/skills/
         if _SEED_SKILLS_DIR.is_dir():
             for skill_dir in _SEED_SKILLS_DIR.iterdir():
                 if skill_dir.is_dir():
+                    if skill_dir.name in _STRUCTURED_ONLY_SKILLS and not structured_knowledge:
+                        continue
                     dst = island_root / "skills" / skill_dir.name
                     if not dst.exists():
                         shutil.copytree(skill_dir, dst)
@@ -125,6 +132,41 @@ def _build_island_subtree(
         str(coral_dir),
         island_id=_island_id_from_root(coral_dir, island_root),
     )
+
+
+def _has_structure_heartbeat(config: CoralConfig) -> bool:
+    """Whether this task opts into the structured knowledge heartbeat."""
+    return any(action.name == "structure" for action in config.agents.heartbeat)
+
+
+def _init_structured_notes(island_root: Path) -> None:
+    """Create the structured-note bundle skeleton used by the structure heartbeat."""
+    structured = island_root / "notes" / "structured"
+    for subdir in ("experiments", "ideas", "directions"):
+        (structured / subdir).mkdir(parents=True, exist_ok=True)
+
+    index = structured / "index.md"
+    if not index.exists():
+        index.write_text(
+            "# Structured Experiment Knowledge\n\n"
+            "## Current Guidance\n\n"
+            "### Stay\n"
+            "- No structured guidance yet.\n\n"
+            "### Branch\n"
+            "- No structured guidance yet.\n\n"
+            "### Abandon\n"
+            "- No structured guidance yet.\n\n"
+            "## Top Unresolved Uncertainties\n"
+            "- No structured uncertainties recorded yet.\n\n"
+            "## Claims Whose Confidence Changed\n"
+            "- No confidence changes recorded yet.\n\n"
+            "## Recent Experiment Lineage\n"
+            "- No experiment lineage recorded yet.\n"
+        )
+
+    log = structured / "log.md"
+    if not log.exists():
+        log.write_text("# Structured Knowledge Update Log\n")
 
 
 def seed_agent_role(
@@ -238,6 +280,7 @@ def create_project(config: CoralConfig, config_dir: Path | None = None) -> Proje
     # Resolve task directory for relative path resolution
     effective_config_dir = config.task_dir or config_dir or Path.cwd()
     expose_knowledge = knowledge_enabled(config)
+    expose_structured_knowledge = expose_knowledge and _has_structure_heartbeat(config)
 
     # Create shared state directories.
     # Single-island (count == 1): keep today's exact layout under public/.
@@ -254,6 +297,7 @@ def create_project(config: CoralConfig, config_dir: Path | None = None) -> Proje
             effective_config_dir,
             list(config.agents.skills),
             knowledge=expose_knowledge,
+            structured_knowledge=expose_structured_knowledge,
         )
     else:
         (coral_dir / "islands").mkdir(parents=True, exist_ok=True)
@@ -266,6 +310,7 @@ def create_project(config: CoralConfig, config_dir: Path | None = None) -> Proje
                 effective_config_dir,
                 list(config.agents.skills),
                 knowledge=expose_knowledge,
+                structured_knowledge=expose_structured_knowledge,
             )
 
     # Save config

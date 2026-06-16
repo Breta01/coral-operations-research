@@ -84,7 +84,7 @@ from coral.workspace import (
 
 logger = logging.getLogger(__name__)
 
-_KNOWLEDGE_HEARTBEATS = {"consolidate", "lint_wiki"}
+_KNOWLEDGE_HEARTBEATS = {"consolidate", "lint_wiki", "structure"}
 _NO_KNOWLEDGE_HEARTBEAT_PROMPTS = {
     "reflect": (
         "Pause and reflect on the recent eval feedback and code changes. "

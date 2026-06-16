@@ -10,7 +10,7 @@ TARGET_EVALS="${TARGET_EVALS:-100}"
 MAX_PARALLEL_RUNS="${MAX_PARALLEL_RUNS:-3}"
 TASK_SLUG="bin-packing"
 
-for config in task.yaml task.no_knowledge.yaml task.no_heartbeats.yaml; do
+for config in task.yaml task.no_knowledge.yaml task.no_heartbeats.yaml task.structured.yaml; do
   if [[ ! -f "${TASK_DIR}/${config}" ]]; then
     echo "Missing ${TASK_DIR}/${config}" >&2
     exit 1
@@ -23,7 +23,8 @@ run_one() {
   local rep="$3"
 
   local run_id="${rep}"
-  local run_dir="./results/${TASK_SLUG}.${condition}/${run_id}"
+  local task_name="${TASK_SLUG}.${condition}"
+  local run_dir="./results/${task_name}/${run_id}"
   local coral_dir="${run_dir}/.coral"
   local eval_count_file="${coral_dir}/public/eval_count"
   local log_file="${run_dir}/ablation_driver.log"
@@ -61,7 +62,7 @@ run_one() {
     done
 
     echo "Stopping ${condition} rep ${rep}"
-    coral stop --task "${TASK_SLUG}" --run "${run_id}" || true
+    coral stop --task "${task_name}" --run "${run_id}" || true
     echo "=== Finished ${condition} rep ${rep} ==="
   } >"${log_file}" 2>&1
 }
@@ -93,6 +94,10 @@ for rep in 1 2 3; do
   launch "no_heartbeats" "task.no_heartbeats.yaml" "${rep}"
 done
 
+for rep in 1 2 3; do
+  launch "structured" "task.structured.yaml" "${rep}"
+done
+
 wait
 
 echo
@@ -106,7 +111,7 @@ import statistics
 from pathlib import Path
 
 root = "./results/bin-packing"
-conditions = ["full", "no_knowledge", "no_heartbeats"]
+conditions = ["full", "no_knowledge", "no_heartbeats", "structured"]
 
 for condition in conditions:
     scores = []

@@ -18,6 +18,13 @@ If multiple agents are all stuck at the same score, do **not** read that as proo
 
 Read — don't skim — the team's open questions and "what might still work" sections.
 
+- If `{shared_dir}/notes/structured/index.md` exists, read it first. Its Current
+  Guidance is the team's structured decision surface: it should list Stay,
+  Branch, and Abandon recommendations, unresolved uncertainties, and confidence
+  changes from prior experiment lineages. Treat it as guidance, not law. If you
+  choose against it, write down the concrete evidence that justifies the
+  disagreement. If `{shared_dir}/skills/structured-experiment-planning/SKILL.md`
+  exists, use it to turn the guidance into a committed 3-eval branch plan.
 - Open `{shared_dir}/notes/index.md` and any `_synthesis/` notes. Find the section that lists *what has not been tried*.
 - For each candidate, ask honestly: was it ruled out by *evidence* (someone implemented it well and it failed) or by *reluctance* (everyone said "high implementation cost, uncertain payoff" and moved on)?
 - The candidates ruled out by reluctance are your shortlist. Pick the one with the highest plausible payoff.
