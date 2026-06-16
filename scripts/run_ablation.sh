@@ -82,17 +82,17 @@ launch() {
   sleep 5
 }
 
-# for rep in 1 2 3; do
-#   launch "full" "task.yaml" "${rep}"
-# done
+for rep in 1 2 3; do
+  launch "full" "task.yaml" "${rep}"
+done
 
-# for rep in 1 2 3; do
-#   launch "no_knowledge" "task.no_knowledge.yaml" "${rep}"
-# done
+for rep in 1 2 3; do
+  launch "no_knowledge" "task.no_knowledge.yaml" "${rep}"
+done
 
-# for rep in 1 2 3; do
-#   launch "no_heartbeats" "task.no_heartbeats.yaml" "${rep}"
-# done
+for rep in 1 2 3; do
+  launch "no_heartbeats" "task.no_heartbeats.yaml" "${rep}"
+done
 
 for rep in 1 2 3; do
   launch "structured" "task.structured.yaml" "${rep}"
