@@ -8,7 +8,14 @@ from pathlib import Path
 
 import pytest
 
-from coral.config import AgentConfig, CoralConfig, GraderConfig, TaskConfig, WorkspaceConfig
+from coral.config import (
+    AgentConfig,
+    CoralConfig,
+    GraderConfig,
+    HeartbeatActionConfig,
+    TaskConfig,
+    WorkspaceConfig,
+)
 from coral.workspace import (
     apply_runtime_mounts,
     create_project,
@@ -102,6 +109,24 @@ def test_create_project_unique_runs():
         # latest should point to the second run directory
         latest = paths1.task_dir / "latest"
         assert latest.resolve() == paths2.run_dir.resolve()
+
+
+def test_create_project_seeds_structured_index_sections():
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as d:
+        _git_init(d)
+
+        config = _make_config(d)
+        config.agents.heartbeat.append(
+            HeartbeatActionConfig(name="structure", every=5, is_global=True)
+        )
+
+        paths = create_project(config)
+
+        index = paths.coral_dir / "public" / "notes" / "structured" / "index.md"
+        content = index.read_text()
+        assert "## Active Branches" in content
+        assert "## Fine-Tuning Summaries" in content
+        assert "## Recently Abandoned / Compressed Branches" in content
 
 
 def test_write_agent_id():

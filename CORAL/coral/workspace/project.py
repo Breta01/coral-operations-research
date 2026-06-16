@@ -160,6 +160,12 @@ def _init_structured_notes(island_root: Path) -> None:
             "- No structured uncertainties recorded yet.\n\n"
             "## Claims Whose Confidence Changed\n"
             "- No confidence changes recorded yet.\n\n"
+            "## Active Branches\n"
+            "- No active branches recorded yet.\n\n"
+            "## Fine-Tuning Summaries\n"
+            "- No fine-tuning summaries recorded yet.\n\n"
+            "## Recently Abandoned / Compressed Branches\n"
+            "- No abandoned or compressed branches recorded yet.\n\n"
             "## Recent Experiment Lineage\n"
             "- No experiment lineage recorded yet.\n"
         )

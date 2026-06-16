@@ -62,7 +62,7 @@ agents:
   model: auto
   heartbeat:
     - name: reflect
-      every: 1
+      every: 4
     - name: consolidate
       every: 11
       global: true

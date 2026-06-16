@@ -12,6 +12,10 @@ The structured bundle uses an OKF-style Markdown format: ordinary Markdown files
 with YAML frontmatter, directory structure, and links. Do not create a separate
 JSON or YAML graph manifest. The Markdown files are the source of truth.
 
+This heartbeat is also responsible for keeping the knowledge base compact. It
+should preserve the experiment tree while collapsing abandoned or over-detailed
+branches into useful summaries.
+
 ### Required bundle shape
 
 Maintain these paths when relevant, always under `{shared_dir}/`:
@@ -26,6 +30,8 @@ Maintain these paths when relevant, always under `{shared_dir}/`:
 ```
 
 Use short, stable filenames. Commit hashes may be shortened when unambiguous.
+Preserve this folder structure as the canonical tree representation. Do not
+replace it with a flat archive or an external manifest.
 
 ### Concept frontmatter
 
@@ -80,6 +86,15 @@ Prefer real-mode attempts over tune-mode attempts when deciding confidence.
 Treat one-shot score deltas near the task's observed noise floor as low
 confidence unless repeated evidence supports them.
 
+Look for two maintenance signals:
+
+- **Early fine-tuning without a branch** — if agents are making tiny tweaks or
+  tune-mode sweeps before naming a direction, create or update a branch/direction
+  node first so later work has a parent.
+- **Abandoned or over-detailed branches** — if a branch has clearly stopped
+  receiving useful work, or has many small experiment notes, prepare to compress
+  it into one summary before pruning old files.
+
 ### Step 2: Create or update experiment nodes
 
 For each recent evaluated commit that is not represented yet, create
@@ -96,6 +111,12 @@ Each experiment node should include:
 Do not overclaim. A regression is evidence about the transition and conditions,
 not proof that the whole idea is dead.
 
+If several experiments are just fine-tuning within the same parent direction
+(parameter sweeps, threshold tweaks, prompt wording variants, tune-mode runs),
+summarize the pattern in the parent experiment, idea, or direction file instead
+of letting each tweak dominate the decision surface. Keep individual experiment
+nodes only when they carry distinct evidence.
+
 ### Step 3: Create or update direction nodes
 
 For meaningful transitions such as `A -> B` or `B -> C`, create or update
@@ -109,6 +130,11 @@ Each direction node should answer:
 - What follow-up would most reduce uncertainty?
 
 Use links to the experiment nodes instead of copying long details.
+
+Branching should be encouraged near the start of a new line of work. If the next
+obvious actions are small improvements or fine-tuning, make sure the parent
+direction says what branch is being explored, what hypothesis it tests, and what
+would justify abandoning it.
 
 ### Step 4: Propagate findings backward
 
@@ -127,7 +153,28 @@ Example: if a comment-only child changes score but reruns reverse the ordering,
 the correct propagated finding is "wall-clock stochastic search is noisy", not
 "bytecode layout uniquely determines the score".
 
-### Step 5: Maintain the decision surface
+### Step 5: Compress abandoned or over-detailed branches
+
+When a branch is abandoned, superseded, or cluttered by many fine-tuning files,
+merge the useful knowledge into a single parent summary before deleting anything.
+The summary may live in the relevant `ideas/<slug>.md`,
+`directions/<parent>--<child>.md`, or one retained
+`experiments/<commit>.md` file.
+
+The summary must capture:
+
+- What was tried and which files/attempts supported it.
+- Scores, outcomes, and whether evidence was real-mode or tune-mode.
+- Why the branch was abandoned, weakened, or superseded.
+- What evidence would reopen the branch.
+- Which structured files or raw experiment notes were summarized.
+
+Only after that summary exists may you delete related stale files. You may delete
+old files under both `{shared_dir}/notes/structured/...` and raw
+`{shared_dir}/notes/experiments/...`, but never delete unique evidence that has
+not been captured in a retained summary.
+
+### Step 6: Maintain the decision surface
 
 Always update `{shared_dir}/notes/structured/index.md`. It is the part agents
 should read before planning their next experiment.
@@ -154,6 +201,15 @@ It must contain:
 ## Claims Whose Confidence Changed
 - ...
 
+## Active Branches
+- ...
+
+## Fine-Tuning Summaries
+- ...
+
+## Recently Abandoned / Compressed Branches
+- ...
+
 ## Recent Experiment Lineage
 - [A](experiments/A.md) -> [B](experiments/B.md) -> [C](experiments/C.md)
 ```
@@ -161,9 +217,10 @@ It must contain:
 Keep Current Guidance short and actionable. Link to deeper experiment, idea,
 and direction files for details.
 
-### Step 6: Update the log
+### Step 7: Update the log
 
 Append a brief dated entry to `{shared_dir}/notes/structured/log.md` describing
-what changed in the structured bundle and why.
+what changed in the structured bundle and why. If you summarized and deleted
+files, list both the retained summary file and the deleted paths.
 
 After updating structured knowledge, resume optimizing.

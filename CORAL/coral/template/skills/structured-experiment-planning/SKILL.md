@@ -18,6 +18,8 @@ Use this skill whenever:
 - Recent attempts are clustered around the same score and you need to decide
   whether to stay, branch, or abandon a direction.
 - You are about to submit an incremental tweak to the current best approach.
+- You are about to fine-tune parameters, prompts, thresholds, or tune-mode
+  settings and no named parent branch/direction exists yet.
 
 Do not use this skill for ordinary note cleanup or broad literature review.
 
@@ -43,13 +45,18 @@ Choose exactly one:
 - **Stay**: Continue the current direction because recent evidence supports it
   and the next eval tests a specific uncertainty inside that direction.
 - **Branch**: Start a related but distinct direction because the current line is
-  plateauing or evidence points to a new mechanism.
+  plateauing, evidence points to a new mechanism, or you need a named parent
+  before fine-tuning small improvements.
 - **Abandon**: Stop spending evals on a direction because repeated evidence or a
   large trusted regression makes it low-value.
 
 Avoid "soft stay" behavior: tiny parameter tweaks after a plateau are usually
 unlabeled Stay decisions. If you cannot explain what uncertainty the tweak
 tests, choose Branch instead.
+
+If you are about to run a fine-tuning sweep, create or select the parent branch
+first. Fine-tuning without a named direction makes the knowledge base harder to
+compress and easier for future agents to repeat accidentally.
 
 ### 2. Calibrate confidence
 
@@ -78,6 +85,9 @@ Eval 3: <tune or combine once correctness is established>
 Abandon if: <specific failure pattern or score evidence>
 ```
 
+Do this before coding or fine-tuning. If the first useful work on a branch is a
+tune-mode sweep, still write the branch plan first and make the sweep Eval 1.
+
 Use commit/eval messages like:
 
 - `structural branch 1/3: <name> - <change>`
@@ -102,6 +112,9 @@ Stop condition: <what would move this to Branch or Abandon>
 If the uncertainty is just "maybe this parameter is better", and the run is
 already plateaued, this is probably not a good Stay.
 
+When staying for fine-tuning, keep it inside a named direction and state where
+the sweep summary will be written when it is done.
+
 ### 5. If Abandon, preserve the lesson
 
 Before abandoning, ensure the structured index or a direction file says:
@@ -109,8 +122,21 @@ Before abandoning, ensure the structured index or a direction file says:
 - What was tried
 - Why it failed or stopped being worth the budget
 - What evidence would reopen it
+- Where any fine-tuning or raw experiment notes were summarized before cleanup
 
 Abandoning is useful only if future agents can avoid repeating the same path.
+
+### 6. Summarize fine-tuning back to the parent
+
+Tune-mode runs, threshold sweeps, and small variants should not become the main
+navigation surface. After enough fine-tuning evidence accumulates, summarize it
+in the parent experiment, idea, or direction file:
+
+- Sweep range or variant family tried
+- Best/worst result and whether real-mode confirmed it
+- Practical lesson for the next agent
+- Any files that can be safely deleted because this summary now carries their
+  useful information
 
 ## Output in Your Reflection or Focus Note
 
@@ -125,6 +151,7 @@ When this skill influences your plan, include this compact block in your note:
 - Base commit: <hash>
 - Next eval: <specific change>
 - If Branch, 3-eval plan: <eval 1>; <eval 2>; <eval 3>
+- If fine-tuning, parent summary target: <file>
 - Evidence that would change my mind: <specific condition>
 ```
 
