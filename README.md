@@ -85,10 +85,14 @@ To make the problem more complicated, agent needs to find solution which is able
 
 | Solver | Final score | Improvement vs seed |
 |---|---:|---:|
-| Seed heuristic | 0.6765 | - |
-| Best CORAL run | 0.749783 | +10.83% |
+| Seed solution | 0.4879 | - |
+| py3dbp (off-the-shelf) | 0.699964 | +43.45% |
+| Best CORAL run | 0.749783 | +53.66% |
+| Upper bound (provable) | 0.792455 | +62.41% |
 
 CORAL improved the naive seed. The best run came from the `no_heartbeats` ablation, which suggests that this task is noisy and that short-run comparisons need repeated runs.
+
+The last two rows bound the problem. `py3dbp` is an off-the-shelf 3D packer (value-density ordering, no time limit) and is the achievable floor that any solver should clear. The `Upper bound` is a provable ceiling: a per-instance bounded knapsack (HiGHS) that keeps only the volume-capacity and quantity constraints and drops all geometry, so no feasible packing can exceed it. The public instances are provably optimal at 1.0 (exact 3D MIP for problem_1/4/5; py3dbp meets the ceiling on problem_2/3), so the entire remaining gap lives in the 20 oversubscribed private instances, where the optimum is bracketed in [0.625, 0.741]. CORAL's 0.749783 therefore captures ~86% of the headroom available above the seed.
 
 ## 3. Task - Ablation Study
 
